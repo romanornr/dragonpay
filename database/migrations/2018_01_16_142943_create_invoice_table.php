@@ -13,16 +13,21 @@ class CreateInvoiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('dollar_amount');
-            $table->bigInteger('satoshi_amount');
-            $table->string('description');
-            $table->binary('post_data');
-            $table->string('buyer_email');
-            $table->string('notification_url');
+            $table->float('price')->nullable();
+            $table->string('currency')->nullable();
+            $table->integer('orderId')->unsigned()->nullable();
+            $table->string('description')->nullable();
+            $table->string('buyer_email')->nullable();
+            $table->string('notification_url')->nullable();
+            $table->string('paymentCode')->nullable();
+            $table->string('buyer')->nullable();
+            $table->string('status')->nullable();
+            $table->bigInteger('cryptoDue')->unsigned()->nullable();
+            $table->bigInteger('cryptoPaid')->unsigned()->nullable();
 
-            $table->integer('invoiceTime');
+            $table->integer('invoiceTime')->nullable();
         });
     }
 
