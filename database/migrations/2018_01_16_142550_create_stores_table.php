@@ -18,8 +18,6 @@ class CreateStoresTable extends Migration
             $table->string('name');
             $table->string('website');
             $table->unsignedTinyInteger('min_confirmations');
-            $table->string('master_public_key');
-            $table->string('address_type');
             $table->timestamps();
         });
     }
