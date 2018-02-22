@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::resource('stores', 'StoreController');
+Route::resource('settings', 'SettingController');
 
 
 Auth::routes();

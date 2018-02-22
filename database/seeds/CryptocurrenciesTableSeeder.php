@@ -14,17 +14,23 @@ class CryptocurrenciesTableSeeder extends Seeder
     {
         DB::table('cryptocurrencies')->insert([
            'name'  => 'bitcoin',
-            'symbol' => 'btc'
+            'symbol' => 'btc',
+            'segwit' => 1,
+            'bech32' => 1
         ]);
 
         DB::table('cryptocurrencies')->insert([
             'name'  => 'viacoin',
-            'symbol' => 'via'
+            'symbol' => 'via',
+            'segwit' => 1,
+            'bech32' => 1
         ]);
 
         DB::table('cryptocurrencies')->insert([
             'name'  => 'litecoin',
-            'symbol' => 'ltc'
+            'symbol' => 'ltc',
+            'segwit' => 1,
+            'bech32' => 1
         ]);
     }
 }

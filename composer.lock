@@ -2118,11 +2118,11 @@
         },
         {
             "name": "romanornr/dragonpay-lib",
-            "version": "dev-master",
+            "version": "9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/romanornr/dragonpay-lib",
-                "reference": "4a4d1a0f100c96c72c4e9db1aae97c9a4bb1e409",
+                "reference": "eaf06445f74ff13bf21f15c187143b4e3df22e0c",
                 "shasum": null
             },
             "require": {

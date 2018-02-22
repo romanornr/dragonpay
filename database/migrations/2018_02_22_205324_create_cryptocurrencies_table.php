@@ -16,7 +16,9 @@ class CreateCryptocurrenciesTable extends Migration
         Schema::create('cryptocurrencies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('symbol');
+            $table->string('symbol')->unique();
+            $table->boolean('segwit');
+            $table->boolean('bech32');
         });
     }
 

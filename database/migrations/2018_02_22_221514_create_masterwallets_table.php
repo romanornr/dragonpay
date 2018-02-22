@@ -15,10 +15,15 @@ class CreateMasterwalletsTable extends Migration
     {
         Schema::create('masterwallets', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cryptocurrency_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->string('master_public_key');
             $table->string('address_type');
             $table->string('script_type');
             $table->timestamps();
+
+            $table->integer('cryptocurrency_id')->index();
+            $table->integer('user_id')->index();
         });
     }
 
