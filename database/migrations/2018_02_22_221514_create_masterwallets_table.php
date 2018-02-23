@@ -22,8 +22,8 @@ class CreateMasterwalletsTable extends Migration
             $table->string('script_type');
             $table->timestamps();
 
-            $table->integer('cryptocurrency_id')->index();
-            $table->integer('user_id')->index();
+            $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

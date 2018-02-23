@@ -24,18 +24,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="Name">The invoice is confirmed when the payment transaction</label>*
-                        <select id="inputState" class="form-control">
-                            <option selected>is unconfirmed</option>
-                            <option>1 confirmation</option>
-                            <option>3 confirmations</option>
-                            <option>6 confirmations</option>
-                        </select>
+                        <label class="control-label" for="Name">Invoice expiration time after x minutes</label>*
+                        <input class="form-control" type="number" data-val="true" id="expiration" name="expiration_expiration" value="120"/>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="Name">Derrivation scheme</label>*
-                        <input class="form-control" type="text" data-val="true" id="derivation_scheme" name="derivation_scheme"/>
+                        <label class="control-label" for="Name">The invoice is confirmed when the payment transaction</label>*
+                        <select id="inputState" class="form-control">
+                            <option value="0" selected>is unconfirmed</option>
+                            <option value="1">1 confirmation</option>
+                            <option value="3">3 confirmations</option>
+                            <option value="6">6 confirmations</option>
+                        </select>
                     </div>
 
                     <div class="form-group">

@@ -34,4 +34,9 @@ class User extends Authenticatable
 
         return $this->api_token;
     }
+
+    public function masterwallet()
+    {
+        return $this->hasMany('App\Models\Masterwallets', 'id');
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrencies;
+use App\Models\Masterwallets;
+use Illuminate\Support\Facades\Auth;
 
 class SettingController extends Controller
 {
@@ -14,9 +16,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $cryptocurrencies = Cryptocurrencies::all();
-        return view('settings.index')
-            ->with('cryptocurrencies', $cryptocurrencies);
+
     }
 
     /**
@@ -24,9 +24,11 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-
+        $cryptocurrencies = Cryptocurrencies::all();
+        return view('settings.create')
+            ->with('cryptocurrencies', $cryptocurrencies);
     }
 
     /**
@@ -37,6 +39,35 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
+
+        $cryptocurrencyID = $request->input('cryptocurrency_id');
+
+
+
+        $masterwallet = new Masterwallets();
+        $user = Auth::user();
+
+        $masterwallet->user_id = $user->id;
+        $masterwallet->cryptocurrency_id = $request->input('cryptocurrency_id');
+        $masterwallet->address_type = $request->input('address_type');
+        $masterwallet->master_public_key = $request->input('master_public_key');
+
+        if(Masterwallets::where('user_id', '=', $user->id)->exists()){
+            if(Masterwallets::where('cryptocurrency_id', '=', $masterwallet->cryptocurrency_id)->exists()){
+                return back()->withErrors('Error: only 1 master public key per currency');
+            }
+        }
+
+        switch ($masterwallet->address_type) {
+            case 'segwit':
+                $masterwallet->script_type = 'p2sh';
+                break;
+            case 'legacy':
+                $masterwallet->script_type = 'p2pkh';
+                break;
+        }
+
+        $masterwallet->save();
     }
 
     /**
