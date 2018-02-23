@@ -14,7 +14,7 @@ class CreateMasterwalletsTable extends Migration
     public function up()
     {
         Schema::create('masterwallets', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('cryptocurrency_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->string('master_public_key');

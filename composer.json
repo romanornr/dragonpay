@@ -9,8 +9,9 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "tymon/jwt-auth": "^0.5.12",
-        "romanornr/dragonpay-lib": "dev-master"
+        "romanornr/dragonpay-lib": "dev-master",
+        "spatie/laravel-binary-uuid": "^1.1",
+        "tymon/jwt-auth": "^0.5.12"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
