@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Masterwallets', 'id');
     }
+
+    public function store()
+    {
+        return $this->hasMany('App\Models\Stores');
+    }
 }

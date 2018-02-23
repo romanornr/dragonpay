@@ -15,10 +15,14 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->index();
             $table->string('name');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->unsignedTinyInteger('min_confirmations');
+            $table->unsignedTinyInteger('expiration_time');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     /**

@@ -9,12 +9,20 @@
                 <hr class="primary">
             </div>
         </div>
+
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-lg-12">
-                <form action="/stores/create" method="post">
-                    
+                <form action="{{url('stores')}}" method="post">
+                    {{ csrf_field()}}
+                    {{ method_field("POST")}}
                     <div class="form-group">
-                        <label class="control-label" for="Name">Name</label>*
+                        <label class="control-label" for="Name">Store name</label>*
                         <input class="form-control" type="text" data-val="true" id="name" name="name"/>
                     </div>
 
@@ -25,12 +33,12 @@
 
                     <div class="form-group">
                         <label class="control-label" for="Name">Invoice expiration time after x minutes</label>*
-                        <input class="form-control" type="number" data-val="true" id="expiration" name="expiration_expiration" value="120"/>
+                        <input class="form-control" type="number" data-val="true" id="expiration" name="expiration_time" value="120"/>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="Name">The invoice is confirmed when the payment transaction</label>*
-                        <select id="inputState" class="form-control">
+                        <label class="control-label" for="min_confirmations">The invoice is confirmed when the payment transaction</label>*
+                        <select id="inputState" name="min_confirmations" class="form-control">
                             <option value="0" selected>is unconfirmed</option>
                             <option value="1">1 confirmation</option>
                             <option value="3">3 confirmations</option>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
+use App\Models\Stores;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -36,7 +39,16 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $store = new Stores();
+
+        $input = $request->all();
+        $store->user()->associate($user);
+        $store->fill($input);
+
+        $store->save();
+
+        return back()->with('status', 'Store succesfully created');
     }
 
     /**
