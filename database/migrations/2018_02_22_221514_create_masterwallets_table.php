@@ -15,8 +15,11 @@ class CreateMasterwalletsTable extends Migration
     {
         Schema::create('masterwallets', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+
             $table->integer('cryptocurrency_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('store_id')->unsigned()->index();
+
             $table->string('master_public_key');
             $table->string('address_type');
             $table->string('script_type');
@@ -24,6 +27,7 @@ class CreateMasterwalletsTable extends Migration
 
             $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
         });
     }
 
