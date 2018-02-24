@@ -23,9 +23,19 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="{{url('settings')}}" method="post">
+                    <form action="{{url('masterwallets')}}" method="post">
                         {{ csrf_field()}}
                         {{ method_field("POST")}}
+
+                        <div class="form-group">
+                            <label class="control-label" for="store_id">Cryptocurrency</label>*
+                            <select id="inputState" name="store_id" class="form-control">
+                                @foreach(Auth::user()->stores as $store)
+                                    <option value="{{ $store->id }}">{{ $store->name  }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label" for="cryptocurrency">Cryptocurrency</label>*
                             <select id="inputState" name="cryptocurrency_id" class="form-control">

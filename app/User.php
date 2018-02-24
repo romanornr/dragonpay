@@ -35,12 +35,19 @@ class User extends Authenticatable
         return $this->api_token;
     }
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['store'];
+
     public function masterwallet()
     {
         return $this->hasMany('App\Models\Masterwallets', 'id');
     }
 
-    public function store()
+    public function stores()
     {
         return $this->hasMany('App\Models\Stores');
     }

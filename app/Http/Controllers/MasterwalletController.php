@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrencies;
 use App\Models\Masterwallets;
+use App\Models\Stores;
 use Illuminate\Support\Facades\Auth;
 
-class SettingController extends Controller
+class MasterwalletController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,8 @@ class SettingController extends Controller
     public function create(Request $request)
     {
         $cryptocurrencies = Cryptocurrencies::all();
-        return view('settings.create')
+
+        return view('masterwallet.create')
             ->with('cryptocurrencies', $cryptocurrencies);
     }
 
@@ -40,14 +42,12 @@ class SettingController extends Controller
     public function store(Request $request)
     {
 
-        $cryptocurrencyID = $request->input('cryptocurrency_id');
-
-
-
+        //$cryptocurrencyID = $request->input('cryptocurrency_id');
         $masterwallet = new Masterwallets();
+        //$store = Stores::find($request->input('store_id'))->get();
         $user = Auth::user();
 
-        $masterwallet->user_id = $user->id;
+        $masterwallet->store_id = $request->input('store_id');
         $masterwallet->cryptocurrency_id = $request->input('cryptocurrency_id');
         $masterwallet->address_type = $request->input('address_type');
         $masterwallet->master_public_key = $request->input('master_public_key');
@@ -67,6 +67,8 @@ class SettingController extends Controller
                 break;
         }
 
+
+        $masterwallet->user()->associate($user);
         $masterwallet->save();
     }
 

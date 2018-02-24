@@ -23,4 +23,9 @@ class Masterwallets extends Model {
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function stores()
+    {
+        return $this->belongsTo('App\Models\Stores', 'store_id');
+    }
+
 }

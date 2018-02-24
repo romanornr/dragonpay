@@ -16,6 +16,7 @@
             </div>
         @endif
 
+
         <div class="row">
             <div class="col-lg-12">
                 <form action="{{url('stores')}}" method="post">

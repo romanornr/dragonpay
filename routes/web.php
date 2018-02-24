@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('stores', 'StoreController');
-    Route::resource('settings', 'SettingController');
+    Route::resource('masterwallets', 'MasterwalletController');
 });
 
 

@@ -16,7 +16,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link disabled" href="/settings">My settings</a>
+            <a class="nav-link disabled" href="/masterwallets">masterwallets</a>
           </li>
 
           <li class="nav-item">
