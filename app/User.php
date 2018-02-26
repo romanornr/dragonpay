@@ -42,9 +42,9 @@ class User extends Authenticatable
      */
     protected $touches = ['store'];
 
-    public function masterwallet()
+    public function masterwallets()
     {
-        return $this->hasMany('App\Models\Masterwallets', 'id');
+        return $this->hasMany('App\Models\Masterwallets');
     }
 
     public function stores()

@@ -9,7 +9,13 @@ class Invoices extends Model {
 
     use HasBinaryUuid;
 
-    protected $guarded = [];
+    /**
+     * table invoices
+     * @var string
+     */
+    protected $table = 'invoices';
+
+    protected $guarded = ['uuid'];
     public $timestamps = false;
 
 }

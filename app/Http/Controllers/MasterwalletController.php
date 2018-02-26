@@ -17,7 +17,7 @@ class MasterwalletController extends Controller
      */
     public function index()
     {
-
+        return view('masterwallets.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class MasterwalletController extends Controller
     {
         $cryptocurrencies = Cryptocurrencies::all();
 
-        return view('masterwallet.create')
+        return view('masterwallets.create')
             ->with('cryptocurrencies', $cryptocurrencies);
     }
 

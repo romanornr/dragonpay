@@ -20,7 +20,10 @@
                 </div>
             @endif
 
-
+            @if(empty(Auth::user()->stores[0]))
+                <p>Please create a store first so you can attach a master key to a store.</p>   `
+                <a class="btn btn-success" href="{{ route('stores.create') }}" role="button">Create a store</a>
+            @else
             <div class="row">
                 <div class="col-lg-12">
                     <form action="{{url('masterwallets')}}" method="post">
@@ -28,7 +31,7 @@
                         {{ method_field("POST")}}
 
                         <div class="form-group">
-                            <label class="control-label" for="store_id">Cryptocurrency</label>*
+                            <label class="control-label" for="store_id">Store</label>*
                             <select id="inputState" name="store_id" class="form-control">
                                 @foreach(Auth::user()->stores as $store)
                                     <option value="{{ $store->id }}">{{ $store->name  }}</option>
@@ -66,6 +69,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </section>
 
 @endsection
