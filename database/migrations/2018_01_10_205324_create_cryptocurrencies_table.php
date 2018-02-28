@@ -14,11 +14,12 @@ class CreateCryptocurrenciesTable extends Migration
     public function up()
     {
         Schema::create('cryptocurrencies', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->increments('id');
             $table->string('name');
             $table->string('symbol')->unique();
             $table->boolean('segwit');
             $table->boolean('bech32');
+            $table->float('blocktime');
         });
     }
 

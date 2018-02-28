@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('stores', 'StoreController');
     Route::resource('masterwallets', 'MasterwalletController');
+    Route::resource('invoices', 'InvoiceController');
 });
 
 

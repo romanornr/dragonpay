@@ -19,22 +19,27 @@ class CreateInvoiceTable extends Migration
             $table->integer('orderId')->unsigned();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('store_id')->unsigned()->index()->nullable();
+            $table->integer('cryptocurrency_id')->unsigned()->index();
+            $table->integer('masterwallet_id')->unsigned()->index();
 
             $table->float('price')->nullable();
-            $table->string('payment_address');
-            $table->string('currency')->nullable();
-            $table->string('cryptocurrency')->nullable();
+            $table->string('payment_address')->unique();
+            $table->string('currency');
             $table->string('description')->nullable();
             $table->string('buyer_email')->nullable();
             $table->string('notification_url')->nullable();
             $table->string('paymentCode')->nullable();
             $table->string('buyer')->nullable();
-            $table->string('status')->nullable();
-            $table->bigInteger('cryptoDue')->unsigned()->nullable();
+            $table->string('status')->default('new');
+            $table->bigInteger('cryptoDue')->unsigned();
             $table->bigInteger('cryptoPaid')->unsigned()->nullable();
             $table->integer('invoiceTime')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');
+            $table->foreign('masterwallet_id')->references('id')->on('masterwallets');
+
         });
     }
 

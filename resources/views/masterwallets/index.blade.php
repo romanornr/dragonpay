@@ -28,7 +28,7 @@
                 <tr>
                     <th> {{ $masterwallet->store_id }}</th>
                     <th>{{ $masterwallet->crytocurrency }}</th>
-                    <th> {{ substr($masterwallet->master_public_key, 0, 14) }}...{{ substr($masterwallet->master_public_key, -7) }}</th>
+                    <th> {{ substr($masterwallet->master_public_key, 0, 14) }}...{{ substr($masterwallet->master_public_key, -14) }}</th>
                     <th> {{ $masterwallet->address_type }}</th>
                 </tr>
                 @endforeach

@@ -16,6 +16,17 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
 
         <div class="row">
             <div class="col-lg-12">
@@ -24,12 +35,12 @@
                     {{ method_field("POST")}}
                     <div class="form-group">
                         <label class="control-label" for="Name">Store name</label>*
-                        <input class="form-control" type="text" data-val="true" id="name" name="name"/>
+                        <input class="form-control" type="text" data-val="true" id="name" name="name" required="true" autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="Name">website</label>*
-                        <input class="form-control" type="text" data-val="true" id="website" name="website"/>
+                        <input class="form-control" type="text" data-val="true" id="website" name="website" required="true" autocomplete="off"/>
                     </div>
 
                     <div class="form-group">

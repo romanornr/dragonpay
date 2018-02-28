@@ -21,7 +21,7 @@
             @endif
 
             @if(empty(Auth::user()->stores[0]))
-                <p>Please create a store first so you can attach a master key to a store.</p>   `
+                <p>Please create a store first so you can attach a master key to a store.</p>
                 <a class="btn btn-success" href="{{ route('stores.create') }}" role="button">Create a store</a>
             @else
             <div class="row">

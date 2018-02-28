@@ -18,4 +18,14 @@ class Invoices extends Model {
     protected $guarded = ['uuid'];
     public $timestamps = false;
 
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function store()
+    {
+        return $this->belongsTo('App\Models\Stores', 'stores_id');
+    }
+
 }

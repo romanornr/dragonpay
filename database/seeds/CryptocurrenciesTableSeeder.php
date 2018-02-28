@@ -16,21 +16,24 @@ class CryptocurrenciesTableSeeder extends Seeder
            'name'  => 'bitcoin',
             'symbol' => 'btc',
             'segwit' => 1,
-            'bech32' => 1
+            'bech32' => 1,
+            'blocktime' => 10
         ]);
 
         DB::table('cryptocurrencies')->insert([
             'name'  => 'viacoin',
             'symbol' => 'via',
             'segwit' => 1,
-            'bech32' => 1
+            'bech32' => 1,
+            'blocktime' => 0.4
         ]);
 
         DB::table('cryptocurrencies')->insert([
             'name'  => 'litecoin',
             'symbol' => 'ltc',
             'segwit' => 1,
-            'bech32' => 1
+            'bech32' => 1,
+            'blocktime' => 2.5
         ]);
     }
 }
