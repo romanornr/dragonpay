@@ -37,12 +37,12 @@ class User extends Authenticatable
         return $this->api_token;
     }
 
-    /**
-     * All of the relationships to be touched.
-     *
-     * @var array
-     */
-    protected $touches = ['store'];
+//    /**
+//     * All of the relationships to be touched.
+//     *
+//     * @var array
+//     */
+//    protected $touches = ['store'];
 
     public function masterwallets()
     {
