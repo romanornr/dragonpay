@@ -16,11 +16,12 @@ class CreateInvoiceTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->uuid('uuid');
             $table->primary('uuid');
-            $table->integer('orderId')->unsigned();
+            $table->unsignedBigInteger('orderId');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('store_id')->unsigned()->index()->nullable();
             $table->integer('cryptocurrency_id')->unsigned()->index();
             $table->integer('masterwallet_id')->unsigned()->index();
+            $table->unsignedBigInteger('address_index');
 
             $table->float('price')->nullable();
             $table->string('payment_address')->unique();
