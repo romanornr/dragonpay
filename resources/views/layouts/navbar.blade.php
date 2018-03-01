@@ -20,7 +20,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link disabled" href="/logout">Logout</a>
+            <a class="nav-link disabled" href="{{ url('/logout') }}">Logout</a>
           </li>                    
         </ul>
       </div>
