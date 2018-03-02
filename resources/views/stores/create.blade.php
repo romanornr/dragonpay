@@ -45,7 +45,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="Name">Invoice expiration time after x minutes</label>*
-                        <input class="form-control" type="number" data-val="true" id="expiration" name="expiration_time" value="120"/>
+                        <input class="form-control" type="number" data-val="true" id="expiration" name="expiration_time" value="120" min="30" max="255"/>
                     </div>
 
                     <div class="form-group">

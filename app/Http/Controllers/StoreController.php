@@ -41,15 +41,25 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $store = new Stores();
-
-        $input = $request->all();
+          $store = new Stores();
+//
+//        $input = $request->all();
         $store->user()->associate($user);
-        $store->fill($input);
+//        $store->fill($input);
+//
+//        $store->save();
+//
+//        return back()->with('status', 'Store succesfully created');
+        $attributes = $request->validate([
+            'name' => 'required',
+            'website' => 'required',
+            'expiration_time' => 'required|numeric|digits_between:2,4',
+            'min_confirmations' => 'required|numeric|digits_between:0,6',
+        ]);
 
+        tap($store)->fill($attributes);
+        //return dd($store);
         $store->save();
-
-        return back()->with('status', 'Store succesfully created');
     }
 
     /**
