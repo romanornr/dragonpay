@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-        <a class="btn btn-success" role="button" href="{{ route('masterwallets.create') }}"><span class="glyphicon glyphicon-plus"></span> Create a new store</a>
+        <a class="btn btn-success" role="button" href="{{ route('masterwallets.create') }}"><span class="glyphicon glyphicon-plus"></span> Create a new masterwallet</a>
             <br></br>
             <table class="table table-sm">
                 <thead>
