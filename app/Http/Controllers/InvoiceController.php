@@ -56,17 +56,6 @@ class InvoiceController extends Controller
 
         $cryptocurrency = Cryptocurrencies::findOrFail($request->input('cryptocurrency_id'));
 
-        /**
-         * TODO: make sure there is not a duplicate orderId for the same store
-         * TODO: make sure every payment address is unique
-         */
-
-//        $x = Invoices::where('masterwallet_id', $masterwallet->id)
-//            ->where('store_id', $request->input('store_id'))
-//            ->first();
-
-//        return dd($x);
-
         $rates = new Rates\CryptoCompare();
         $cryptoDue = $rates->fiatIntoSatoshi($fiatAmount, $fiatCurrency, $cryptocurrency->symbol);
 
@@ -84,8 +73,24 @@ class InvoiceController extends Controller
         $invoice->buyer_email = $request->input('buyer_email');
         $invoice->notification_url = $request->input('notification_url');
 
+        /**
+         * TODO: make sure there is not a duplicate orderId for the same store
+         * TODO: make sure every payment address is unique
+         */
+
+        //do duplicate store_id & orderid
+        if(Invoices::where('store_id', $invoice->store_id)
+            ->where('orderId', $invoice->orderId)
+            ->exists()){
+            return dd('duplicate');
+        }
+
+        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)
+        ->max('key_path');
+
 
         $invoice->save();
+
 
         return dd($request->input());
     }
