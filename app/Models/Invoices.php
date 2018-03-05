@@ -32,4 +32,9 @@ class Invoices extends Model {
         return $this->belongsTo('App\Models\Stores', 'store_id');
     }
 
+    public function cryptocurrency()
+    {
+        return $this->belongsTo('App\Models\Cryptocurrencies', 'cryptocurrency_id');
+    }
+
 }

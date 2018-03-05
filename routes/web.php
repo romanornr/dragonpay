@@ -25,4 +25,5 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 
+Route::get('/invoice/uuid={uuid}', 'OrderController@show');
 Route::get('/home', 'HomeController@index')->name('home');
