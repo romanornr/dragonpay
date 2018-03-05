@@ -16,7 +16,11 @@ class Invoices extends Model {
     protected $table = 'invoices';
 
     protected $guarded = ['uuid'];
-    public $timestamps = false;
+
+    public function getKeyName()
+    {
+        return 'uuid';
+    }
 
     public function user()
     {
@@ -25,7 +29,7 @@ class Invoices extends Model {
 
     public function store()
     {
-        return $this->belongsTo('App\Models\Stores', 'stores_id');
+        return $this->belongsTo('App\Models\Stores', 'store_id');
     }
 
 }

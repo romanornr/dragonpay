@@ -73,35 +73,28 @@ class InvoiceController extends Controller
         $invoice->buyer_email = $request->input('buyer_email');
         $invoice->notification_url = $request->input('notification_url');
 
-        /**
-         * TODO: make sure there is not a duplicate orderId for the same store
-         * TODO: make sure every payment address is unique
-         */
 
-        //do duplicate store_id & orderid
         if(Invoices::where('store_id', $invoice->store_id)
             ->where('orderId', $invoice->orderId)
             ->exists()){
-            return dd('duplicate');
+            return back()->withErrors('This orderId is not unique for this store');
         }
 
-        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)
-        ->max('key_path');
+        //Take the next keypath from the masterwallet
+        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1;
 
 
         $invoice->save();
-
-
-        return dd($request->input());
+        return redirect('invoices')->with('status', 'Invoice succesfully created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param  \App\Models\Invoices  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show(Invoices $invoice)
     {
         //
     }
@@ -112,7 +105,7 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoices  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invoice $invoice)
+    public function edit(Invoices $invoice)
     {
         //
     }
@@ -124,7 +117,7 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoices  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, Invoices $invoice)
     {
         //
     }
@@ -135,7 +128,7 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoices  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(Invoices $invoice)
     {
         //
     }

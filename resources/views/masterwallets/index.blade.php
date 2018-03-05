@@ -21,15 +21,17 @@
                     <th scope="col">cryptocurrency</th>
                     <th scope="col">master public key</th>
                     <th scope="col">address type</th>
+                    <th scope="col">created at</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach(Auth::user()->masterwallets as $masterwallet)
                 <tr>
-                    <th> {{ $masterwallet->store_id }}</th>
-                    <th>{{ $masterwallet->crytocurrency }}</th>
-                    <th> {{ substr($masterwallet->master_public_key, 0, 14) }}...{{ substr($masterwallet->master_public_key, -14) }}</th>
-                    <th> {{ $masterwallet->address_type }}</th>
+                    <td> {{ $masterwallet->stores->name }}</td>
+                    <td>{{ $masterwallet->crytocurrency }}</td>
+                    <td> {{ substr($masterwallet->master_public_key, 0, 14) }}...{{ substr($masterwallet->master_public_key, -14) }}</td>
+                    <td> {{ $masterwallet->address_type }}</td>
+                    <td> {{ $masterwallet->created_at }}</td>
                 </tr>
                 @endforeach
                 </tbody>

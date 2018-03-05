@@ -15,7 +15,7 @@ class Masterwallets extends Model {
 
     public function cryptocurrency()
     {
-        return $this->belongsTo('App\Models\Cryptocurrencies');
+        return $this->belongsTo('App\Models\Cryptocurrencies', 'cryptocurrency_id');
     }
 
     public function user()
