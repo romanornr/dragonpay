@@ -13,11 +13,6 @@ class Masterwallets extends Model {
 
     protected $guarded = ['id'];
 
-    public function cryptocurrency()
-    {
-        return $this->belongsTo('App\Models\Cryptocurrencies', 'cryptocurrency_id');
-    }
-
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
@@ -26,6 +21,11 @@ class Masterwallets extends Model {
     public function stores()
     {
         return $this->belongsTo('App\Models\Stores', 'store_id');
+    }
+
+    public function cryptocurrency()
+    {
+        return $this->belongsTo('App\Models\Cryptocurrencies', 'cryptocurrency_id');
     }
 
 }

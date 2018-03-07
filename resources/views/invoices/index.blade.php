@@ -50,7 +50,7 @@
                         <td>{{ $invoice->uuid_text }}</td>
                         <td> {{ $invoice->price }} {{ $invoice->currency }}</td>
                         <td> {{ $invoice->status }}</td>
-                        <td> Show/Edit</td>
+                        <td> Show/Edit/ <a href="{{ url("invoice/uuid={$invoice->uuid_text}")}}">Checkout</a></td>
                     </tr>
                 @endforeach
                 </tbody>

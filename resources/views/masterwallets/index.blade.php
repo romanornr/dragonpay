@@ -28,7 +28,7 @@
                 @foreach(Auth::user()->masterwallets as $masterwallet)
                 <tr>
                     <td> {{ $masterwallet->stores->name }}</td>
-                    <td>{{ $masterwallet->crytocurrency }}</td>
+                    <td>{{ $masterwallet->cryptocurrency->name }}</td>
                     <td> {{ substr($masterwallet->master_public_key, 0, 14) }}...{{ substr($masterwallet->master_public_key, -14) }}</td>
                     <td> {{ $masterwallet->address_type }}</td>
                     <td> {{ $masterwallet->created_at }}</td>
