@@ -49,14 +49,9 @@ class InvoiceController extends Controller
             ->where('store_id', $request->input('store_id'))
             ->first();
 
-        $paymentAddress = Address::getAddress($masterwallet->address_type, $masterwallet->master_public_key, $request->input('orderId'))
-                        ->createOrderAddress();
-
         $fiatAmount = $request->input('price');
         $fiatCurrency = $request->input('currency');
-
         $cryptocurrency = Cryptocurrencies::findOrFail($request->input('cryptocurrency_id'));
-
         $rates = new Rates\CryptoCompare();
         $cryptoDue = $rates->fiatIntoSatoshi($fiatAmount, $fiatCurrency, $cryptocurrency->symbol);
 
@@ -66,7 +61,12 @@ class InvoiceController extends Controller
         $invoice->store_id = $request->input('store_id');
         $invoice->masterwallet_id = $masterwallet->id;
         $invoice->price = $request->input('price');
-        $invoice->payment_address = $paymentAddress;
+
+        //Take the next keypath from the masterwallet
+        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1;
+        $invoice->payment_address = Address::getAddress($masterwallet->address_type, $masterwallet->master_public_key, $invoice->key_path)
+            ->createOrderAddress();
+
         $invoice->currency = $fiatCurrency;
         $invoice->cryptocurrency_id = $cryptocurrency->id;
         $invoice->cryptoDue = $cryptoDue;
@@ -75,24 +75,20 @@ class InvoiceController extends Controller
         $invoice->notification_url = $request->input('notification_url');
 
 
-        if(Invoices::where('store_id', $invoice->store_id)
+        if(!is_null($invoice->OrderId) && Invoices::where('store_id', $invoice->store_id)
             ->where('orderId', $invoice->orderId)
             ->exists()){
             return back()->withErrors('This orderId is not unique for this store');
         }
 
-        //Take the next keypath from the masterwallet
-        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1;
-
-        //$job = new ProcessPayment($invoice);
-       // $this->dispatch($job);
-
+        $delay = $cryptocurrency->blocktime * 2;
 
         $invoice->save();
+
+        ProcessPayment::dispatch($invoice);
+
 //        ProcessPayment::dispatch($invoice)
-//            ->delay(now()->addMinutes(5));
-        ProcessPayment::dispatch($invoice)
-            ->delay(now()->addSecond(15));
+//            ->delay(now()->addMinutes($delay));
         return redirect('invoices')->with('status', 'Invoice succesfully created');
     }
 

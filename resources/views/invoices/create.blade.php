@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="orderId">orderId (from the merchant system)</label>*
-                        <input class="form-control" type="text" data-val="true" id="orderId" name="orderId" required="true" autocomplete="off"/>
+                        <input class="form-control" type="text" data-val="true" id="orderId" name="orderId" autocomplete="off"/>
                     </div>
 
                     <div class="form-group">
