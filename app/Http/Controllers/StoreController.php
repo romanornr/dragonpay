@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessPayment;
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
 use App\Models\Stores;
@@ -98,6 +99,8 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $store = Stores::findOrFail($id);
+        $store->delete();
+        return back()->with('status', 'Masterwallet address successfully deleted');
     }
 }

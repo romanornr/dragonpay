@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessPayment;
 use App\Models\Invoices;
 use App\Models\Cryptocurrencies;
 use Illuminate\Http\Request;
@@ -83,8 +84,15 @@ class InvoiceController extends Controller
         //Take the next keypath from the masterwallet
         $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1;
 
+        //$job = new ProcessPayment($invoice);
+       // $this->dispatch($job);
+
 
         $invoice->save();
+//        ProcessPayment::dispatch($invoice)
+//            ->delay(now()->addMinutes(5));
+        ProcessPayment::dispatch($invoice)
+            ->delay(now()->addSecond(15));
         return redirect('invoices')->with('status', 'Invoice succesfully created');
     }
 

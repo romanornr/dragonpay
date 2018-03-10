@@ -117,6 +117,8 @@ class MasterwalletController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $masterwallet = Masterwallets::findOrFail($id);
+        $masterwallet->delete();
+        return back()->with('status', 'Masterwallet address successfully deleted');
     }
 }

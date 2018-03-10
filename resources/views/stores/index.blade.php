@@ -30,7 +30,14 @@
                     <th scope="row">{{ $store->name }}</th>
                     <td>{{ $store->website }}</td>
                     <td></td>
-                    <td>Show / Edit / Remove</td>
+                    <td>
+                        <form action="{{url('stores', [$store->id])}}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                        </form>
+
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>

@@ -4,11 +4,14 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=7.0.0",
+        "chainfailure/prospect": "dev-master",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.4.0",
         "romanornr/dragonpay-lib": "dev-master",
         "spatie/laravel-binary-uuid": "^1.1",
         "tymon/jwt-auth": "^0.5.12"
