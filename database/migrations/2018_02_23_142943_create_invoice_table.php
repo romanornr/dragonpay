@@ -19,7 +19,7 @@ class CreateInvoiceTable extends Migration
             $table->unsignedBigInteger('orderId');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('store_id')->unsigned()->index()->nullable();
-            $table->integer('cryptocurrency_id')->unsigned()->index();
+            $table->integer('cryptocurrency_id')->unsigned()->index()->nullable();
             $table->integer('masterwallet_id')->unsigned()->index();
             $table->unsignedBigInteger('key_path');
 
