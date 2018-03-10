@@ -42,8 +42,7 @@ class ProcessPayment implements ShouldQueue
             $this->invoice->status = 'confirmed';
             $this->invoice->save();
         }else{
-
-new Exception()            $this->invoice->status = 'failed';
+            $this->invoice->status = 'failed';
             $this->invoice->save();
         }
     }
