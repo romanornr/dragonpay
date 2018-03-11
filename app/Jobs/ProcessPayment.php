@@ -10,12 +10,27 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use DragonPay\DragonPay;
 use PHPUnit\Framework\Exception;
+use Illuminate\Support\Facades\DB;
 
 class ProcessPayment implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $invoice;
+
+    /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 4;
+
+    /**
+     * The number of seconds the job can run before timing out.
+     *
+     * @var int
+     */
+    public $timeout = 10;
 
     /**
      * Create a new job instance.
@@ -35,16 +50,14 @@ class ProcessPayment implements ShouldQueue
     public function handle()
     {
         $DragonPay = new DragonPay();
-
         $symbol = $this->invoice->cryptocurrency->symbol;
-        if($DragonPay->isPaid($symbol, $this->invoice->payment_address, $this->invoice->cryptoDue)){
-            $this->invoice->cryptoDue = 0;
+
+        if($DragonPay->isPaid($symbol, $this->invoice->payment_address, $this->invoice->cryptoDue)) {
+            $this->invoice->cryptoPaid = $this->invoice->cryptoDue;
             $this->invoice->status = 'confirmed';
             $this->invoice->save();
-        }else{
-            $this->invoice->status = 'failed';
-            $this->invoice->save();
         }
+        throw new Exception('not paid yet');
     }
 
     /**
@@ -54,17 +67,18 @@ class ProcessPayment implements ShouldQueue
      */
     public function retryUntil()
     {
-        return now()->addMinutes(5);
+        return now()->addMinutes(1);
     }
 
-//    /**
-//     * The job failed to process.
-//     *
-//     * @param  Exception  $exception
-//     * @return void
-//     */
-//    public function failed(Exception $exception)
-//    {
-//        // Send user notification of failure, etc...
-//    }
+    /**
+     * The job failed to process.
+     *
+     * @param  Exception  $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        $this->invoice->status = 'invalid';
+        $this->invoice->save();
+    }
 }
