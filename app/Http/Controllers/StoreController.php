@@ -54,7 +54,8 @@ class StoreController extends Controller
 
         tap($store)->fill($attributes);
         $store->save();
-        return back()->with('status', 'Store succesfully created');
+        return redirect('stores')->with('status', 'Store succesfully created');
+
     }
 
     /**

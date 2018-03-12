@@ -70,9 +70,9 @@ class MasterwalletController extends Controller
                 break;
         }
 
-
         $masterwallet->user()->associate($user);
         $masterwallet->save();
+        return redirect('masterwallets')->with('status', 'Masterwallet succesfully created');
     }
 
     /**

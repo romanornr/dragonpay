@@ -23,14 +23,14 @@ class ProcessPayment implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 4;
+    public $tries = 20;
 
     /**
      * The number of seconds the job can run before timing out.
      *
      * @var int
      */
-    public $timeout = 10;
+    public $timeout = 20;
 
     /**
      * Create a new job instance.
@@ -56,7 +56,9 @@ class ProcessPayment implements ShouldQueue
             $this->invoice->crypto_paid = $this->invoice->crypto_due;
             $this->invoice->status = 'confirmed';
             $this->invoice->save();
+            return;
         }
+
         throw new Exception('not paid yet');
     }
 
@@ -67,7 +69,7 @@ class ProcessPayment implements ShouldQueue
      */
     public function retryUntil()
     {
-        return now()->addMinutes(1);
+        return now()->addMinutes(10);
     }
 
     /**

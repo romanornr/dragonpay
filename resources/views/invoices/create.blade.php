@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="order_id">order_id (from the merchant system)</label>*
+                        <label class="control-label" for="order_id">order_id <br>(internal id from the merchant system. Direct match between the order_id and invoice_uuid)</label>*
                         <input class="form-control" type="text" data-val="true" id="order_id" name="order_id" autocomplete="off"/>
                     </div>
 

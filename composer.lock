@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bit-Wasp/bitcoin-php.git",
-                "reference": "61212b507a951e2bbf59590d6e0bb35206409f20"
+                "reference": "2e902077810a74cd6295847f2450eaf3e81e7dd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bit-Wasp/bitcoin-php/zipball/61212b507a951e2bbf59590d6e0bb35206409f20",
-                "reference": "61212b507a951e2bbf59590d6e0bb35206409f20",
+                "url": "https://api.github.com/repos/Bit-Wasp/bitcoin-php/zipball/2e902077810a74cd6295847f2450eaf3e81e7dd0",
+                "reference": "2e902077810a74cd6295847f2450eaf3e81e7dd0",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
             ],
             "description": "PHP Bitcoin library with functions for transactions, signatures, serialization, Random/Deterministic ECDSA keys, blocks, RPC bindings",
             "homepage": "https://github.com/bit-wasp/bitcoin-php",
-            "time": "2018-02-18T21:44:14+00:00"
+            "time": "2018-03-11T22:05:56+00:00"
         },
         {
             "name": "bitwasp/buffertools",
@@ -632,16 +632,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
+                "reference": "ba1bce30baab94dddde21c4ae93872b1762d39fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ba1bce30baab94dddde21c4ae93872b1762d39fa",
+                "reference": "ba1bce30baab94dddde21c4ae93872b1762d39fa",
                 "shasum": ""
             },
             "require": {
@@ -651,7 +651,7 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0 || ^5.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
                 "psr/log": "^1.0"
             },
             "suggest": {
@@ -660,7 +660,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "6.3-dev"
                 }
             },
             "autoload": {
@@ -693,7 +693,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-06-22T18:50:49+00:00"
+            "time": "2018-03-11T15:03:34+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -904,12 +904,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3528418377bafad2b5424256e76d399ebfba0b77"
+                "reference": "9457b28b470036582a215599b7cb84616a41f297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3528418377bafad2b5424256e76d399ebfba0b77",
-                "reference": "3528418377bafad2b5424256e76d399ebfba0b77",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9457b28b470036582a215599b7cb84616a41f297",
+                "reference": "9457b28b470036582a215599b7cb84616a41f297",
                 "shasum": ""
             },
             "require": {
@@ -1030,7 +1030,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-03-09T23:44:13+00:00"
+            "time": "2018-03-10T15:44:32+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1621,16 +1621,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.24.1",
+            "version": "1.24.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "ef12cbd8ba5ce624f0a6a95e0850c4cc13e71e41"
+                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ef12cbd8ba5ce624f0a6a95e0850c4cc13e71e41",
-                "reference": "ef12cbd8ba5ce624f0a6a95e0850c4cc13e71e41",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bba6c6e410c6b4317e37a9474aeaa753808c3875",
+                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875",
                 "shasum": ""
             },
             "require": {
@@ -1670,7 +1670,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-03-09T15:49:34+00:00"
+            "time": "2018-03-10T10:10:14+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2217,7 +2217,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/romanornr/dragonpay-lib",
-                "reference": "d58526f928db1644c3273d8ad92652618b5749ca",
+                "reference": "175bb312014d7ac15ce4484e3008a5423546fccf",
                 "shasum": null
             },
             "require": {
@@ -2563,12 +2563,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "5de2441e197e87d34299945085152004294354cd"
+                "reference": "606803460db12e1997cbde2504dfdd0175798885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/5de2441e197e87d34299945085152004294354cd",
-                "reference": "5de2441e197e87d34299945085152004294354cd",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/606803460db12e1997cbde2504dfdd0175798885",
+                "reference": "606803460db12e1997cbde2504dfdd0175798885",
                 "shasum": ""
             },
             "require": {
@@ -2618,7 +2618,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-22T10:06:54+00:00"
+            "time": "2018-03-09T17:46:25+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2729,12 +2729,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "66a0fe61ee7cb08eee94c5a5fc83378cce062cd4"
+                "reference": "558a4dc7293d4676a1dc695b1a2c3dd3f2cd5381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/66a0fe61ee7cb08eee94c5a5fc83378cce062cd4",
-                "reference": "66a0fe61ee7cb08eee94c5a5fc83378cce062cd4",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/558a4dc7293d4676a1dc695b1a2c3dd3f2cd5381",
+                "reference": "558a4dc7293d4676a1dc695b1a2c3dd3f2cd5381",
                 "shasum": ""
             },
             "require": {
@@ -2809,7 +2809,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05T22:26:20+00:00"
+            "time": "2018-03-11T18:19:37+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -3151,12 +3151,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "8773a9d52715f1a579576ce0e60213de34f5ef3e"
+                "reference": "b40f67f9b1e806497c746e0da089fb140cd6f6c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/8773a9d52715f1a579576ce0e60213de34f5ef3e",
-                "reference": "8773a9d52715f1a579576ce0e60213de34f5ef3e",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/b40f67f9b1e806497c746e0da089fb140cd6f6c4",
+                "reference": "b40f67f9b1e806497c746e0da089fb140cd6f6c4",
                 "shasum": ""
             },
             "require": {
@@ -3221,7 +3221,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-02-28T21:49:22+00:00"
+            "time": "2018-03-11T18:19:37+00:00"
         },
         {
             "name": "symfony/translation",

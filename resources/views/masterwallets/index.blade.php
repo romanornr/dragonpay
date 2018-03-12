@@ -16,6 +16,12 @@
                 </div>
             </div>
 
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
         <a class="btn btn-success" role="button" href="{{ route('masterwallets.create') }}"><span class="glyphicon glyphicon-plus"></span> Create a new masterwallet</a>
             <br></br>
             <table class="table table-sm">
