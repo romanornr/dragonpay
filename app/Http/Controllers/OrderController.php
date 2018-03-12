@@ -15,15 +15,15 @@ class OrderController extends Controller
         $cryptocurrency = $invoice->cryptocurrency;
         $DragonPay = new DragonPay();
 
-        $cryptoDue = sprintf('%f', $DragonPay->SatoshiToCrypto($invoice->cryptoDue));
+        $crypto_due = sprintf('%f', $DragonPay->SatoshiToCrypto($invoice->crypto_due));
 
 
-        $QRcode = $DragonPay->createQRcode($invoice->payment_address, $cryptocurrency->name, $cryptoDue);
+        $QRcode = $DragonPay->createQRcode($invoice->payment_address, $cryptocurrency->name, $crypto_due);
 
         return view('orders.show', ['paymentAddress' => $invoice->payment_address,
             'invoice' => $invoice,
             'QRcode' => $QRcode,
-            'cryptoDue' => $cryptoDue,
+            'crypto_due' => $crypto_due,
             'cryptocurrency' => $cryptocurrency]);
     }
 }

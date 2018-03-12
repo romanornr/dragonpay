@@ -50,8 +50,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="orderId">orderId (from the merchant system)</label>*
-                        <input class="form-control" type="text" data-val="true" id="orderId" name="orderId" autocomplete="off"/>
+                        <label class="control-label" for="order_id">order_id (from the merchant system)</label>*
+                        <input class="form-control" type="text" data-val="true" id="order_id" name="order_id" autocomplete="off"/>
                     </div>
 
                     <div class="form-group">

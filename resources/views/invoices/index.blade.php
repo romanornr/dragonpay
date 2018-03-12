@@ -46,7 +46,7 @@
                     <tr>
                         <td>{{ $invoice->created_at }}</td>
                         <td>{{ $invoice->store->name }}</td>
-                        <td>{{ $invoice->orderId }}</td>
+                        <td>{{ $invoice->order_id }}</td>
                         <td>{{ $invoice->uuid_text }}</td>
                         <td> {{ $invoice->price }} {{ $invoice->currency }}</td>
                         <td> {{ $invoice->status }}</td>

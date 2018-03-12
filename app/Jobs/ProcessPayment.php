@@ -52,8 +52,8 @@ class ProcessPayment implements ShouldQueue
         $DragonPay = new DragonPay();
         $symbol = $this->invoice->cryptocurrency->symbol;
 
-        if($DragonPay->isPaid($symbol, $this->invoice->payment_address, $this->invoice->cryptoDue)) {
-            $this->invoice->cryptoPaid = $this->invoice->cryptoDue;
+        if($DragonPay->isPaid($symbol, $this->invoice->payment_address, $this->invoice->crypto_due)) {
+            $this->invoice->crypto_paid = $this->invoice->crypto_due;
             $this->invoice->status = 'confirmed';
             $this->invoice->save();
         }

@@ -16,7 +16,7 @@ class CreateInvoiceTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->uuid('uuid');
             $table->primary('uuid');
-            $table->unsignedBigInteger('orderId')->nullable();
+            $table->unsignedBigInteger('order_id')->nullable();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('store_id')->unsigned()->index()->nullable();
             $table->integer('cryptocurrency_id')->unsigned()->index()->nullable();
@@ -24,8 +24,8 @@ class CreateInvoiceTable extends Migration
             $table->unsignedBigInteger('key_path');
 
             $table->float('price')->nullable();
-            $table->bigInteger('cryptoDue')->unsigned();
-            $table->bigInteger('cryptoPaid')->unsigned()->nullable();
+            $table->bigInteger('crypto_due')->unsigned();
+            $table->bigInteger('crypto_paid')->unsigned()->nullable();
             $table->string('payment_address')->unique();
             $table->string('currency');
             $table->string('description')->nullable();

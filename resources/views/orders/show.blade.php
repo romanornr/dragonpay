@@ -55,8 +55,8 @@
                                     });
                                 </script>
 
-                                <input value="{{ $cryptoDue }}" readonly/> {{ strtoupper($cryptocurrency->symbol) }}
-                                <button class="btn" data-clipboard-text="{{ $cryptoDue }}">
+                                <input value="{{ $crypto_due }}" readonly/> {{ strtoupper($cryptocurrency->symbol) }}
+                                <button class="btn" data-clipboard-text="{{ $crypto_due }}">
                                     copy
                                 </button>
 
@@ -94,7 +94,7 @@
 
                             <script>
                                 var paymentAddress = {!! json_encode($invoice->paymentAddress) !!}
-                                var orderPrice = {!! json_encode($cryptoDue) !!}
+                                var orderPrice = {!! json_encode($crypto_due) !!}
                                 var ws = new WebSocket("wss://socket.blockcypher.com/v1/btc/main");
                                 var count = 0;
                                 ws.onmessage = function (event) {

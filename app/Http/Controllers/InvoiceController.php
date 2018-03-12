@@ -53,11 +53,11 @@ class InvoiceController extends Controller
         $fiatCurrency = $request->input('currency');
         $cryptocurrency = Cryptocurrencies::findOrFail($request->input('cryptocurrency_id'));
         $rates = new Rates\CryptoCompare();
-        $cryptoDue = $rates->fiatIntoSatoshi($fiatAmount, $fiatCurrency, $cryptocurrency->symbol);
+        $crypto_due = $rates->fiatIntoSatoshi($fiatAmount, $fiatCurrency, $cryptocurrency->symbol);
 
         $invoice = new Invoices();
         $invoice->user()->associate($user);
-        $invoice->orderId = $request->input('orderId');
+        $invoice->order_id = $request->input('order_id');
         $invoice->store_id = $request->input('store_id');
         $invoice->masterwallet_id = $masterwallet->id;
         $invoice->price = $request->input('price');
@@ -69,16 +69,16 @@ class InvoiceController extends Controller
 
         $invoice->currency = $fiatCurrency;
         $invoice->cryptocurrency_id = $cryptocurrency->id;
-        $invoice->cryptoDue = $cryptoDue;
+        $invoice->crypto_due = $crypto_due;
         $invoice->description = $request->input('description');
         $invoice->buyer_email = $request->input('buyer_email');
         $invoice->notification_url = $request->input('notification_url');
 
 
-        if(!is_null($invoice->OrderId) && Invoices::where('store_id', $invoice->store_id)
-            ->where('orderId', $invoice->orderId)
+        if(!is_null($invoice->order_id) && Invoices::where('store_id', $invoice->store_id)
+            ->where('order_id', $invoice->order_id)
             ->exists()){
-            return back()->withErrors('This orderId is not unique for this store');
+            return back()->withErrors('This order_id is not unique for this store');
         }
 
         $delay = $cryptocurrency->blocktime * 2;
