@@ -17,14 +17,15 @@ class CreateInvoiceTable extends Migration
             $table->uuid('uuid');
             $table->primary('uuid');
             $table->unsignedBigInteger('order_id')->nullable();
+
             $table->integer('user_id')->unsigned()->index();
             $table->integer('store_id')->unsigned()->index()->nullable();
             $table->integer('cryptocurrency_id')->unsigned()->index()->nullable();
-            $table->integer('masterwallet_id')->unsigned()->index();
-            $table->unsignedBigInteger('key_path');
+            $table->integer('masterwallet_id')->unsigned()->index()->nullable();
+            $table->unsignedBigInteger('key_path')->nullable();
 
             $table->float('price')->nullable();
-            $table->bigInteger('crypto_due')->unsigned();
+            $table->bigInteger('crypto_due')->unsigned()->nullable();
             $table->bigInteger('crypto_paid')->unsigned()->nullable();
             $table->string('payment_address')->unique();
             $table->string('currency');
@@ -34,7 +35,6 @@ class CreateInvoiceTable extends Migration
             $table->string('paymentCode')->nullable();
             $table->string('buyer')->nullable();
             $table->string('status')->default('new');
-            $table->integer('invoiceTime')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');

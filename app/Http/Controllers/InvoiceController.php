@@ -25,8 +25,12 @@ class InvoiceController extends Controller
     {
        // $user = Auth::user()::with('invoices')->get();
 
-        $users = Auth::user()::with('invoices', 'stores')->paginate();
+        //$users = Auth::user()::with('invoices', 'stores')->get();
+        $invoices = Invoices::with(['store' => function ($query){
+            $query->where('user_id', Auth::id());
+    }])->get();
 
+        //return dd($invoices);
 
 //        foreach($user as $user1) {
 //            echo $invoice = $user1->invoices;
@@ -34,7 +38,7 @@ class InvoiceController extends Controller
 //        }
 //        return;
         return view('invoices.index')
-            ->with('users', $users);
+            ->with('invoices', $invoices);
     }
 
     /**

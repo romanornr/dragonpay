@@ -13,11 +13,21 @@ class CryptocurrenciesTableSeeder extends Seeder
     public function run()
     {
         DB::table('cryptocurrencies')->insert([
-           'name'  => 'bitcoin',
+            'name'  => 'bitcoin',
             'symbol' => 'btc',
             'segwit' => 1,
             'bech32' => 1,
-            'blocktime' => 10
+            'blocktime' => 10,
+            'blockexplorer' => 'https://insight.bitpay.com/'
+        ]);
+
+        DB::table('cryptocurrencies')->insert([
+            'name' => 'bitcoin testnet',
+            'symbol' => 'btc',
+            'segwit' => 1,
+            'bech32' => 1,
+            'blocktime' => 10,
+            'blockexplorer' => 'https://test-insight.bitpay.com/'
         ]);
 
         DB::table('cryptocurrencies')->insert([
@@ -25,7 +35,8 @@ class CryptocurrenciesTableSeeder extends Seeder
             'symbol' => 'via',
             'segwit' => 1,
             'bech32' => 1,
-            'blocktime' => 0.4
+            'blocktime' => 0.4,
+            'blockexplorer' => 'https://explorer.viacoin.org/'
         ]);
 
         DB::table('cryptocurrencies')->insert([
@@ -33,7 +44,8 @@ class CryptocurrenciesTableSeeder extends Seeder
             'symbol' => 'ltc',
             'segwit' => 1,
             'bech32' => 1,
-            'blocktime' => 2.5
+            'blocktime' => 2.5,
+            'blockexplorer' => 'https://insight.litecore.io/'
         ]);
     }
 }

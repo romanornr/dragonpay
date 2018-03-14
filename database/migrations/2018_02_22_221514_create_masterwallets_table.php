@@ -17,7 +17,7 @@ class CreateMasterwalletsTable extends Migration
             $table->increments('id')->unsigned();
 
             $table->integer('cryptocurrency_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('user_id')->index();
             $table->integer('store_id')->unsigned()->index();
 
             $table->string('master_public_key');
