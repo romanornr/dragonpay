@@ -27,6 +27,11 @@
                 </div>
             @endif
 
+            {{--@foreach($users as $key => $user)--}}
+                {{--<p>{{ $user->invoices[$key]->created_at  }}</p>--}}
+
+                {{--@endforeach--}}
+
             <a class="btn btn-success" role="button" href="{{ route('invoices.create') }}"><span class="glyphicon glyphicon-plus"></span> Create invoice</a>
             <br></br>
             <table class="table table-sm">
@@ -42,20 +47,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach(Auth::user()->invoices as $invoice)
+                @foreach($users as $key => $user)
                     <tr>
-                        <td>{{ $invoice->created_at }}</td>
-                        <td>{{ $invoice->store->name }}</td>
-                        <td>{{ $invoice->order_id }}</td>
-                        <td>{{ $invoice->uuid_text }}</td>
-                        <td> {{ $invoice->price }} {{ $invoice->currency }}</td>
-                        <td> {{ $invoice->status }}</td>
-                        <td> Show/Edit/ <a href="{{ url("invoice/uuid={$invoice->uuid_text}")}}">Checkout</a></td>
+                        <td>{{ $user->invoices[$key]->created_at }}</td>
+                        <td>{{ $user->stores[$key]->name }}</td>
+                        <td>{{ $user->invoices[$key]->order_id }}</td>
+                        <td>{{ $user->invoices[$key]->uuid_text }}</td>
+                        <td> {{ $user->invoices[$key]->price }} {{ $user->invoices[$key]->currency }}</td>
+                        <td> {{ $user->invoices[$key]->status }}</td>
+                        <td> Show/Edit/ <a href="{{ url("invoice/uuid={$user->invoices[$key]->uuid_text}")}}">Checkout</a></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-
 
         </div>
     </section>

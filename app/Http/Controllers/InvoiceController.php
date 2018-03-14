@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\ProcessPayment;
 use App\Models\Invoices;
 use App\Models\Cryptocurrencies;
+use App\User;
 use DragonPay\CryptoCurrencies\Bitcoin;
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
@@ -22,7 +23,18 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('invoices.index');
+       // $user = Auth::user()::with('invoices')->get();
+
+        $users = Auth::user()::with('invoices', 'stores')->paginate();
+
+
+//        foreach($user as $user1) {
+//            echo $invoice = $user1->invoices;
+//            //return dd($invoice[0]->price);
+//        }
+//        return;
+        return view('invoices.index')
+            ->with('users', $users);
     }
 
     /**
