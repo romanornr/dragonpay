@@ -33,7 +33,6 @@ class CreateInvoiceTable extends Migration
             $table->string('buyer_email')->nullable();
             $table->string('notification_url')->nullable();
             $table->string('paymentCode')->nullable();
-            $table->string('buyer')->nullable();
             $table->string('status')->default('new');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

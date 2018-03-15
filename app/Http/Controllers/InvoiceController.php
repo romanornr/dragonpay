@@ -23,20 +23,11 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-       // $user = Auth::user()::with('invoices')->get();
 
-        //$users = Auth::user()::with('invoices', 'stores')->get();
         $invoices = Invoices::with(['store' => function ($query){
             $query->where('user_id', Auth::id());
-    }])->get();
+        }])->get();
 
-        //return dd($invoices);
-
-//        foreach($user as $user1) {
-//            echo $invoice = $user1->invoices;
-//            //return dd($invoice[0]->price);
-//        }
-//        return;
         return view('invoices.index')
             ->with('invoices', $invoices);
     }

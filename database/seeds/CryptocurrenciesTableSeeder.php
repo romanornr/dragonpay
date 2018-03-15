@@ -22,7 +22,7 @@ class CryptocurrenciesTableSeeder extends Seeder
         ]);
 
         DB::table('cryptocurrencies')->insert([
-            'name' => 'bitcoin testnet',
+            'name' => 'bitcointestnet',
             'symbol' => 'btc',
             'segwit' => 1,
             'bech32' => 1,
