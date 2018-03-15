@@ -54,6 +54,24 @@ return [
             'engine' => null,
         ],
 
+        'mysql_test' => [
+            'driver'    => 'mysql',
+            'host'      => env('DBT_HOST', '127.0.0.1'),
+            'database'  => env('DBT_DATABASE', 'forge'),
+            'username'  => env('DBT_USERNAME', 'forge'),
+            'password'  => env('DBT_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
+        'sqlite_testing' => [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
