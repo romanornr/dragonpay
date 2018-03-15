@@ -41,6 +41,11 @@ class OrderController extends Controller
             ->createPaymentAddress();
 
         $invoice->save();
+
+        $delay = (int) ceil($cryptocurrency->blocktime * 2);
+        ProcessPayment::dispatch($invoice)
+            ->delay(now()->addMinutes($delay));
+
         return redirect()->action('OrderController@show', ['invoice' => $invoice]);
     }
 

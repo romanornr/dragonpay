@@ -55,23 +55,15 @@ class InvoiceController extends Controller
     {
         $user = Auth::user();
 
-        $fiatAmount = $request->input('price');
-        $fiatCurrency = $request->input('currency');
-        $cryptocurrency = Cryptocurrencies::findOrFail($request->input('cryptocurrency_id'));
-
-
         $invoice = new Invoices();
         $invoice->user()->associate($user);
         $invoice->order_id = $request->input('order_id');
         $invoice->store_id = $request->input('store_id');
         $invoice->price = $request->input('price');
-
-        $invoice->currency = $fiatCurrency;
-
+        $invoice->currency = $request->input('currency');
         $invoice->description = $request->input('description');
         $invoice->buyer_email = $request->input('buyer_email');
         $invoice->notification_url = $request->input('notification_url');
-
 
         if(!is_null($invoice->order_id) && Invoices::where('store_id', $invoice->store_id)
             ->where('order_id', $invoice->order_id)
@@ -79,11 +71,7 @@ class InvoiceController extends Controller
             return back()->withErrors('This order_id is not unique for this store');
         }
 
-        $delay = (int) ceil($cryptocurrency->blocktime * 2);
         $invoice->save();
-
-        ProcessPayment::dispatch($invoice)
-            ->delay(now()->addMinutes($delay));
         return redirect('invoices')->with('status', 'Invoice succesfully created');
     }
 

@@ -47,7 +47,7 @@
                     <th scope="col">Created</th>
                     <th scope="col">Store</th>
                     <th scope="col">order id</th>
-                    <th scope="col">invoice id</th>
+                    <th scope="col">invoice uuid</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>

@@ -18,6 +18,7 @@
             <table class="table table-sm">
                 <thead>
                 <tr>
+                    <th scope="col">id</th>
                     <th scope="col">name</th>
                     <th scope="col">website</th>
                     <th scope="col">balances</th>
@@ -27,11 +28,12 @@
                 <tbody>
                 @foreach(Auth::user()->stores as $store)
                 <tr>
+                    <th scope="col">{{ $store->id }}</th>
                     <th scope="row">{{ $store->name }}</th>
                     <td>{{ $store->website }}</td>
                     <td></td>
                     <td>
-                        <form action="{{url('stores', [$store->id])}}" method="POST">
+                        <form onsubmit="return confirm('Do you really want to delete this store?'); "action="{{url('stores', [$store->id])}}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-danger" value="Delete"/>
