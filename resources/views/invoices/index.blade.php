@@ -27,6 +27,18 @@
                 </div>
             @endif
 
+            <form action="/search" method="POST" role="search">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" autocomplete="off"
+                           placeholder="Search invoice on UUID"> <span class="input-group-btn">
+                        <button type="submit" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-search">Search</span>
+                        </button>
+                    </span>
+                </div>
+            </form><br>
+
             <a class="btn btn-success" role="button" href="{{ route('invoices.create') }}"><span class="glyphicon glyphicon-plus"></span> Create invoice</a>
             <br></br>
             <table class="table table-sm">

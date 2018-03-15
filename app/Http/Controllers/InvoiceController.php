@@ -26,7 +26,7 @@ class InvoiceController extends Controller
 
         $invoices = Invoices::with(['store' => function ($query){
             $query->where('user_id', Auth::id());
-        }])->simplePaginate(1);
+        }])->paginate(1);
 
         return view('invoices.index')
             ->with('invoices', $invoices);

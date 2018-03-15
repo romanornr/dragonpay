@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function edit($uuid)
     {
         $invoice = Invoices::withUuid($uuid)->firstOrFail();
-        $masterwallets = Masterwallets::where('store_id', $invoice->store_id)->get();
+        $masterwallets = Masterwallets::where('store_id', $invoice->store_id)->orderBy('id', 'desc')->get();
 
         return view('orders.edit', ['masterwallets' => $masterwallets,
             'invoice' => $invoice]);

@@ -44,7 +44,7 @@
                     <td> {{ $masterwallet->address_type }}</td>
                     <td> {{ $masterwallet->created_at }}</td>
                     <td>
-                        <form action="{{url('masterwallets', [$masterwallet->id])}}" method="POST">
+                        <form onsubmit="return confirm('Do you really want to delete this masterwallet?'); "action="{{url('masterwallets', [$masterwallet->id])}}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-danger" value="Delete"/>
