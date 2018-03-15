@@ -50,12 +50,12 @@
                         <td>{{ $invoice->uuid_text }}</td>
                         <td> {{ $invoice->price }} {{ $invoice->currency }}</td>
                         <td> {{ $invoice->status }}</td>
-                        <td> Show/Edit/ <a href="{{ url("invoice/uuid={$invoice->uuid_text}")}}">Checkout</a></td>
+                        <td> Show/<a href="{{ url("invoice/uuid={$invoice->uuid_text}/edit")}}">Checkout</a></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            {{--{{ $users->links() }}--}}
+            {{ $invoices->links() }}
 
         </div>
     </section>

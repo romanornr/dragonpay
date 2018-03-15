@@ -40,14 +40,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label" for="cryptocurrency_id">Cryptocurrency</label>*
-                        <select id="inputState" name="cryptocurrency_id" class="form-control">
-                            @foreach($cryptocurrencies as $cryptocurrency)
-                                <option value="{{ $cryptocurrency->id }}">{{ $cryptocurrency->name  }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-label" for="cryptocurrency_id">Cryptocurrency</label>*--}}
+                        {{--<select id="inputState" name="cryptocurrency_id" class="form-control">--}}
+                            {{--@foreach($cryptocurrencies as $cryptocurrency)--}}
+                                {{--<option value="{{ $cryptocurrency->id }}">{{ $cryptocurrency->name  }}</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
 
                     <div class="form-group">
                         <label class="control-label" for="order_id">order_id <br>(internal id from the merchant system. Direct match between the order_id and invoice_uuid)</label>*

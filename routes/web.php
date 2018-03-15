@@ -25,5 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 
+Route::get('/invoice/uuid={uuid}/edit', 'OrderController@edit');
+Route::put('/invoice/update', 'OrderController@update')->name('updateOrder');
 Route::get('/invoice/uuid={uuid}', 'OrderController@show');
 Route::get('/home', 'HomeController@index')->name('home');
