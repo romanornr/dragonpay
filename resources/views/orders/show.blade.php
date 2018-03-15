@@ -92,29 +92,29 @@
                             </script>
 
 
-                            <script>
-                                var paymentAddress = {!! json_encode($invoice->paymentAddress) !!}
-                                var orderPrice = {!! json_encode($crypto_due) !!}
-                                var ws = new WebSocket("wss://socket.blockcypher.com/v1/btc/main");
-                                var count = 0;
-                                ws.onmessage = function (event) {
-                                    var tx = JSON.parse(event.data);
-                                    var shortHash = tx.hash.substring(0, 6) + "...";
-                                    var total = tx.total / 100000000;
-                                    var addrs = tx.addresses.join(", ");
-                                    $('#browser-websocket').before("<div>Unconfirmed transaction " + shortHash + " totalling " + total + "BTC involving addresses " + addrs + "</div>");
-                                    for(i = 0; i < tx.addresses.length; i++)
-                                        if(tx.addresses[i] == paymentAddress){
-                                            console.log("payment detected");
-                                            console.log(tx.addresses[i]);
-                                            console.log(tx);
-                                            ws.close();
-                                        }
-                                }
-                                ws.onopen = function(event) {
-                                    ws.send(JSON.stringify({event: "unconfirmed-tx"}));
-                                }
-                            </script>
+                            {{--<script>--}}
+                                {{--var paymentAddress = {!! json_encode($invoice->paymentAddress) !!}--}}
+                                {{--var orderPrice = {!! json_encode($crypto_due) !!}--}}
+                                {{--var ws = new WebSocket("wss://socket.blockcypher.com/v1/btc/main");--}}
+                                {{--var count = 0;--}}
+                                {{--ws.onmessage = function (event) {--}}
+                                    {{--var tx = JSON.parse(event.data);--}}
+                                    {{--var shortHash = tx.hash.substring(0, 6) + "...";--}}
+                                    {{--var total = tx.total / 100000000;--}}
+                                    {{--var addrs = tx.addresses.join(", ");--}}
+                                    {{--$('#browser-websocket').before("<div>Unconfirmed transaction " + shortHash + " totalling " + total + "BTC involving addresses " + addrs + "</div>");--}}
+                                    {{--for(i = 0; i < tx.addresses.length; i++)--}}
+                                        {{--if(tx.addresses[i] == paymentAddress){--}}
+                                            {{--console.log("payment detected");--}}
+                                            {{--console.log(tx.addresses[i]);--}}
+                                            {{--console.log(tx);--}}
+                                            {{--ws.close();--}}
+                                        {{--}--}}
+                                {{--}--}}
+                                {{--ws.onopen = function(event) {--}}
+                                    {{--ws.send(JSON.stringify({event: "unconfirmed-tx"}));--}}
+                                {{--}--}}
+                            {{--</script>--}}
 
                         </div>
 

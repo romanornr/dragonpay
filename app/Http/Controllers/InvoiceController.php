@@ -60,33 +60,13 @@ class InvoiceController extends Controller
         $cryptocurrency = Cryptocurrencies::findOrFail($request->input('cryptocurrency_id'));
 
 
-//        $rates = new Rates\CryptoCompare();
-//        $crypto_due = $rates->fiatIntoSatoshi($fiatAmount, $fiatCurrency, $cryptocurrency->symbol);
-
-//        $masterwallet = $user->Masterwallets()->where('cryptocurrency_id', $cryptocurrency->id)
-//            ->where('store_id', $request->input('store_id'))
-//            ->first();
-
-        //if(is_null($masterwallet)) return back()->withErrors('There is no masterwallet in this store setup for '. $cryptocurrency->name);
-
         $invoice = new Invoices();
         $invoice->user()->associate($user);
         $invoice->order_id = $request->input('order_id');
         $invoice->store_id = $request->input('store_id');
-       // $invoice->masterwallet_id = $masterwallet->id;
         $invoice->price = $request->input('price');
 
-//        //Take the next keypath from the masterwallet
-//        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1;
-
-
-//        $crypto = CryptocurrencyFactory::{$cryptocurrency->name}();
-//        $invoice->payment_address = Address::getAddress($crypto, $masterwallet->address_type, $masterwallet->master_public_key, $invoice->key_path)
-//            ->createPaymentAddress();
-
         $invoice->currency = $fiatCurrency;
-//        $invoice->cryptocurrency_id = $cryptocurrency->id;
-//        $invoice->crypto_due = $crypto_due;
 
         $invoice->description = $request->input('description');
         $invoice->buyer_email = $request->input('buyer_email');
