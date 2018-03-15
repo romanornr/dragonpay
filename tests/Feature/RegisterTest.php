@@ -52,6 +52,7 @@ class RegisterTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors();
+        $this->assertGuest($guard = null);
     }
 
 
