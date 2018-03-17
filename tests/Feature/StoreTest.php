@@ -1,12 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Models\Stores;
-use Prophecy\Comparator\Factory;
 use Tests\TestCase;
 use App\User;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class StoreTest extends TestCase
