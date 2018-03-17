@@ -10,6 +10,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * The registration form can be displayed.
      *

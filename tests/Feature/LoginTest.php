@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * The login form can be displayed.
      *
