@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Store;
 use Tests\TestCase;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class StoreTest extends TestCase
@@ -18,15 +19,11 @@ class StoreTest extends TestCase
     public function testCreateStoreAsLoggedInUser()
     {
         $user = factory(User::class)->create();
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'secret'
-        ]);
-        $response->assertStatus(302);
+        Auth::login($user);
         $response = $this->get('/stores/create');
         $response->assertStatus(200);
 
-        $response2 = $this->post('/stores', [
+        $response = $this->post('/stores', [
             'name' => 'store1',
             'website' => 'https://store1example.com',
             'min_confirmations' => 1,
@@ -34,9 +31,10 @@ class StoreTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $response2->assertStatus(302);
+        $response->assertStatus(302);
 
         $store = Store::find(1);
+        self::assertNotEquals($store->name, 'storeee1');
         self::assertEquals($store->name, 'store1');
         self::assertEquals($store->website, 'https://store1example.com');
         self::assertEquals($store->min_confirmations, 1);
