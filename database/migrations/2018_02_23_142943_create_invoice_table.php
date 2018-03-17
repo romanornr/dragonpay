@@ -27,7 +27,7 @@ class CreateInvoiceTable extends Migration
             $table->float('price')->nullable();
             $table->bigInteger('crypto_due')->unsigned()->nullable();
             $table->bigInteger('crypto_paid')->unsigned()->nullable();
-            $table->string('payment_address')->unique();
+            $table->string('payment_address')->unique()->nullable();
             $table->string('currency');
             $table->string('description')->nullable();
             $table->string('buyer_email')->nullable();
@@ -38,7 +38,7 @@ class CreateInvoiceTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');
-           // $table->foreign('masterwallet_id')->references('id')->on('masterwallets');
+            $table->foreign('masterwallet_id')->references('id')->on('masterwallets');
             $table->timestamps();
 
         });

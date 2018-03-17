@@ -42,4 +42,5 @@ class StoreTest extends TestCase
         self::assertEquals($store->user_id, $user->id);
 
     }
+
 }

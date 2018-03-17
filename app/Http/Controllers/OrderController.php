@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessPayment;
 use App\Models\Cryptocurrency;
 use App\Models\Masterwallet;
-use DragonPay\CryptoCurrencies\Cryptocurrency;
 use DragonPay\CryptoCurrencies\CryptocurrencyFactory;
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
@@ -14,6 +14,10 @@ use App\Models\Invoices;
 
 class OrderController extends Controller
 {
+    /**
+     * @param $uuid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($uuid)
     {
         $invoice = Invoices::withUuid($uuid)->firstOrFail();
@@ -23,6 +27,10 @@ class OrderController extends Controller
             'invoice' => $invoice]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
         $invoice = Invoices::withUuid($request->input('uuid'))->firstOrFail();
@@ -35,20 +43,26 @@ class OrderController extends Controller
         $invoice->crypto_due = $rates->fiatIntoSatoshi($invoice->price, $invoice->currency, $cryptocurrency->symbol);
 
         $crypto = CryptocurrencyFactory::{$cryptocurrency->name}();
-        //Take the next keypath from the masterwallet
-        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1;
+        $invoice->cryptocurrency_id = $cryptocurrency->id;
+        $invoice->masterwallet_id = $masterwallet->id;
+        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1; //Take the next keypath from the masterwallet
         $invoice->payment_address = Address::getAddress($crypto, $masterwallet->address_type, $masterwallet->master_public_key, $invoice->key_path)
             ->createPaymentAddress();
 
         $invoice->save();
 
-        $delay = (int) ceil($cryptocurrency->blocktime * 2);
+        $delay = (int) ceil($cryptocurrency->blocktime * 2 + $invoice->store->expiration_time);
         ProcessPayment::dispatch($invoice)
             ->delay(now()->addMinutes($delay));
 
         return redirect()->action('OrderController@show', ['invoice' => $invoice]);
     }
 
+
+    /**
+     * @param $invoice
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($invoice)
     {
         $invoice = Invoices::withUuid($invoice)->firstOrFail();
