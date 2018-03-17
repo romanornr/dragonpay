@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 use App\User;
 
-$factory->define(App\Models\Stores::class, function (Faker $faker){
+$factory->define(App\Models\Store::class, function (Faker $faker){
    return [
        'name' => $faker->name,
        'website' => $faker->unique()->name,

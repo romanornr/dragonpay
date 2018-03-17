@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Stores extends Model {
+class Store extends Model {
 
     protected $table = 'stores';
 
@@ -17,6 +17,6 @@ class Stores extends Model {
 
     public function masterwallets()
     {
-        return $this->hasMany('App\Models\Masterwallets');
+        return $this->hasMany('App\Models\Masterwallet');
     }
 }

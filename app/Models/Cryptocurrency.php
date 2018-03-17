@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Cryptocurrencies extends Model {
+class Cryptocurrency extends Model {
 
     /**
      * table cryptocurrencies

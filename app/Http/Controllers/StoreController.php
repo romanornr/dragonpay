@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\ProcessPayment;
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
-use App\Models\Stores;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +42,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $store = new Stores();
+        $store = new Store();
         $store->user()->associate($user);
 
         $attributes = $request->validate([
@@ -100,7 +100,7 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        $store = Stores::findOrFail($id);
+        $store = Store::findOrFail($id);
         $store->delete();
         return back()->with('status', 'Masterwallet address successfully deleted');
     }

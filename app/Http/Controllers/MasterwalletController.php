@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cryptocurrencies;
-use App\Models\Masterwallets;
-use App\Models\Stores;
+use App\Models\Cryptocurrency;
+use App\Models\Masterwallet;
+use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 
 class MasterwalletController extends Controller
@@ -27,7 +27,7 @@ class MasterwalletController extends Controller
      */
     public function create(Request $request)
     {
-        $cryptocurrencies = Cryptocurrencies::all();
+        $cryptocurrencies = Cryptocurrency::all();
 
         return view('masterwallets.create')
             ->with('cryptocurrencies', $cryptocurrencies);
@@ -42,7 +42,7 @@ class MasterwalletController extends Controller
     public function store(Request $request)
     {
 
-        $masterwallet = new Masterwallets();
+        $masterwallet = new Masterwallet();
         $user = Auth::user();
 
         $request->validate([
@@ -117,7 +117,7 @@ class MasterwalletController extends Controller
      */
     public function destroy($id)
     {
-        $masterwallet = Masterwallets::findOrFail($id);
+        $masterwallet = Masterwallet::findOrFail($id);
         $masterwallet->delete();
         return back()->with('status', 'Masterwallet address successfully deleted');
     }

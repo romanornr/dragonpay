@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Stores;
+use App\Models\Store;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -36,7 +36,7 @@ class StoreTest extends TestCase
 
         $response2->assertStatus(302);
 
-        $store = Stores::find(1);
+        $store = Store::find(1);
         self::assertEquals($store->name, 'store1');
         self::assertEquals($store->website, 'https://store1example.com');
         self::assertEquals($store->min_confirmations, 1);

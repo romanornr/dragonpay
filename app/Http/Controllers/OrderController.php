@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cryptocurrencies;
-use App\Models\Masterwallets;
+use App\Models\Cryptocurrency;
+use App\Models\Masterwallet;
 use DragonPay\CryptoCurrencies\Cryptocurrency;
 use DragonPay\CryptoCurrencies\CryptocurrencyFactory;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function edit($uuid)
     {
         $invoice = Invoices::withUuid($uuid)->firstOrFail();
-        $masterwallets = Masterwallets::where('store_id', $invoice->store_id)->orderBy('id', 'desc')->get();
+        $masterwallets = Masterwallet::where('store_id', $invoice->store_id)->orderBy('id', 'desc')->get();
 
         return view('orders.edit', ['masterwallets' => $masterwallets,
             'invoice' => $invoice]);
@@ -26,8 +26,8 @@ class OrderController extends Controller
     public function update(Request $request)
     {
         $invoice = Invoices::withUuid($request->input('uuid'))->firstOrFail();
-        $cryptocurrency = Cryptocurrencies::where('id', $request->input('cryptocurrency_id'))->firstOrFail();
-        $masterwallet = Masterwallets::where('cryptocurrency_id', $cryptocurrency->id)
+        $cryptocurrency = Cryptocurrency::where('id', $request->input('cryptocurrency_id'))->firstOrFail();
+        $masterwallet = Masterwallet::where('cryptocurrency_id', $cryptocurrency->id)
             ->where('store_id', $invoice->store_id)
             ->first();
 

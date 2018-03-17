@@ -46,12 +46,12 @@ class User extends Authenticatable
 
     public function masterwallets()
     {
-        return $this->hasMany('App\Models\Masterwallets');
+        return $this->hasMany('App\Models\Masterwallet');
     }
 
     public function stores()
     {
-        return $this->hasMany('App\Models\Stores');
+        return $this->hasMany('App\Models\Store');
     }
 
     public function invoices()

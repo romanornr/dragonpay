@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Masterwallets extends Model {
+class Masterwallet extends Model {
 
     /**
      * table masterwallets
@@ -20,12 +20,12 @@ class Masterwallets extends Model {
 
     public function stores()
     {
-        return $this->belongsTo('App\Models\Stores', 'store_id');
+        return $this->belongsTo('App\Models\Store', 'store_id');
     }
 
     public function cryptocurrency()
     {
-        return $this->belongsTo('App\Models\Cryptocurrencies', 'cryptocurrency_id');
+        return $this->belongsTo('App\Models\Cryptocurrency', 'cryptocurrency_id');
     }
 
 }

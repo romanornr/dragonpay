@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessPayment;
 use App\Models\Invoices;
-use App\Models\Cryptocurrencies;
+use App\Models\Cryptocurrency;
 use App\User;
 use DragonPay\CryptoCurrencies\Bitcoin;
 use Illuminate\Http\Request;
@@ -39,7 +39,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $cryptocurrencies = Cryptocurrencies::all();
+        $cryptocurrencies = Cryptocurrency::all();
         return view('invoices.create')
             ->with('cryptocurrencies', $cryptocurrencies);
 
