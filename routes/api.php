@@ -1,6 +1,16 @@
 <?php
 
 use Illuminate\Http\Request;
+
+use App\Http\Resources\MasterwalletResource;
+
+//
+//Route::get('/masterwallet/{cryptocurrency}/{address_type}/{xpub}', function ($cryptocurrency, $address_type, $xpub){
+//    //return new MasterwalletResource($cryptocurrency);
+//    $m = new MasterwalletResource();
+//    return $m->ree($cryptocurrency, $xpub);
+//});
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,6 +22,13 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/masterwallet/{cryptocurrency}/{addressType}/{masterPublicKey}/{keyPath}', function($cryptocurrency, $addressType, $masterPublicKey, $keyPath){
+   // \App\Http\Controllers\MasterwalletController::
+    $x = new App\Http\Controllers\MasterwalletController();
+    $x->getPublicKeys($cryptocurrency, $addressType, $masterPublicKey, $keyPath);
+    //[uses => 'MasterwalletController@getPublicKey($cryptocurrency, $addressType, $masterPublicKey, $keyPath))']
+});
+
  Route::middleware('auth:api')->get('/user', function (Request $request) {
      return $request->user();
  });
@@ -22,3 +39,4 @@ Route::post('logout', 'Auth\LoginController@logout');
 
 
 Route::post('invoices', 'InvoiceController@store');
+

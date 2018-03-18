@@ -100,18 +100,35 @@ class MasterwalletController extends Controller
      * @param $masterPublicKey
      * @param $keyPath
      */
-    public function getPublicKey($cryptocurrency, $addressType, $masterPublicKey, $keyPath)
+    public function getPublicKeys($cryptocurrency, $addressType, $masterPublicKey, $keyPath)
     {
         $crypto = CryptocurrencyFactory::{$cryptocurrency}();
-        $payment_address = Address::getAddress($crypto, $addressType, $masterPublicKey , $keyPath)
-            ->createPaymentAddress();
 
-        $array = [
+        $array = [];
+
+        for ($keyPath = 1; $keyPath <= 10; $keyPath++){
+            $payment_address = Address::getAddress($crypto, $addressType, $masterPublicKey , $keyPath)
+                ->createPaymentAddress();
+
+            $array1 = [
             "cryptocurrency" => $cryptocurrency,
             "type" => $addressType,
             "address" => $payment_address,
             "keypath" => $keyPath
         ];
+
+            array_push($array, $array1);
+        }
+
+       // json_encode($array);
+
+
+//        $array = [
+//            "cryptocurrency" => $cryptocurrency,
+//            "type" => $addressType,
+//            "address" => $payment_address,
+//            "keypath" => $keyPath
+//        ];
         echo json_encode($array);
     }
 

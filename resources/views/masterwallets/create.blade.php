@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                             <label class="control-label" for="cryptocurrency">Cryptocurrency</label>*
-                            <select id="inputState" name="cryptocurrency_id" class="form-control">
+                            <select id="inputStateCryptocurrency" name="cryptocurrency_id" class="form-control">
                                 @foreach($cryptocurrencies as $cryptocurrency)
                                     <option value="{{ $cryptocurrency->id }}">{{ $cryptocurrency->name }}</option>
                                 @endforeach
@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <label class="control-label" for="address_type">Address type</label>*
-                            <select id="inputState" name="address_type" class="form-control">
+                            <select id="inputStateType" name="address_type" class="form-control">
                                 <option value="segwit" selected>Segwit</option>
                                 <option value="legacy">Legacy</option>
                             </select>
@@ -62,13 +62,50 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-success" />
+                            <input type="submit" id="submit" value="Create" class="btn btn-success" />
                         </div>
-
-                        <a href="/">Back</a>
                 </div>
+                <button class="btn btn-danger" onclick="checkMasterPublicKey()">Check master public child keys first!</button>
             </div>
+                <div id="keys"></div><br>
         </div>
+
+        <script>
+            document.getElementById("submit").disabled = true;
+
+
+            function checkMasterPublicKey() {
+                var cryptocurrency = document.getElementById("inputStateCryptocurrency").selectedOptions[0].innerText;
+                var addressType = document.getElementById("inputStateType").selectedOptions[0].innerText.toLowerCase();
+                var masterPublicKey = document.getElementById("master_public_key").value;
+
+                var request = new XMLHttpRequest();
+
+                    var url = '/api/masterwallet/' + cryptocurrency + '/' + addressType + '/' + masterPublicKey + '/'+'1';
+
+                    request.addEventListener('load', onLoad);
+                    request.open('GET', url);
+                    request.send();
+
+                    function onLoad() {
+                        var response = this.responseText
+                        var obj = JSON.parse(response)
+                        console.log(obj)
+
+                        var x;
+                        for(x in obj){
+                            var p = document.createElement("P"+x);
+                            var txt = document.createTextNode(obj[x].keypath + ': ' + obj[x].address);
+                            p.appendChild(document.createElement("br"));
+                            p.appendChild(txt);
+                          //  document.body.appendChild(p);
+                            document.getElementById("keys").appendChild(p);
+                            // document.getElementById("p11").innerHTML = obj[x].address
+                        }
+                        document.getElementById("submit").disabled = false;
+                    }
+            }
+        </script>
         @endif
     </section>
 
