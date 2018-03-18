@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DragonPay\Address\AddressFactory as Address;
+use DragonPay\CryptoCurrencies\CryptocurrencyFactory;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
 use App\Models\Masterwallet;
 use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
+use function MongoDB\BSON\toJSON;
 
 class MasterwalletController extends Controller
 {
@@ -70,6 +73,17 @@ class MasterwalletController extends Controller
                 break;
         }
 
+        $cryptocurrency = Cryptocurrency::where('id', $masterwallet->cryptocurrency_id)->first();
+
+        $crypto = CryptocurrencyFactory::{$cryptocurrency->name}();
+
+        try {
+            Address::getAddress($crypto, $masterwallet->address_type, $masterwallet->master_public_key, 1)
+                ->createPaymentAddress();
+        }catch (\Exception $e){
+            return back()->withErrors('Error: this does not seem like a valid Master public key.');
+        }
+
         $masterwallet->user()->associate($user);
         $masterwallet->save();
         return redirect('masterwallets')->with('status', 'Masterwallet succesfully created');
@@ -85,6 +99,29 @@ class MasterwalletController extends Controller
     {
         //
     }
+
+    /**
+     * Json response showing the public key
+     * @param $cryptocurrency
+     * @param $addressType
+     * @param $masterPublicKey
+     * @param $keyPath
+     */
+    public function getPublicKey($cryptocurrency, $addressType, $masterPublicKey, $keyPath)
+    {
+        $crypto = CryptocurrencyFactory::{$cryptocurrency}();
+        $payment_address = Address::getAddress($crypto, $addressType, $masterPublicKey , $keyPath)
+            ->createPaymentAddress();
+
+        $array = [
+            "cryptocurrency" => $cryptocurrency,
+            "type" => $addressType,
+            "address" => $payment_address,
+            "keypath" => $keyPath
+        ];
+        echo json_encode($array);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
