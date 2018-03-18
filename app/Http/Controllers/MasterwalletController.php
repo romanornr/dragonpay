@@ -58,12 +58,6 @@ class MasterwalletController extends Controller
         $masterwallet->address_type = $request->input('address_type');
         $masterwallet->master_public_key = $request->input('master_public_key');
 
-        if($user->Masterwallets()->where('store_id', $request->input('store_id'))
-            ->where('cryptocurrency_id', $masterwallet->cryptocurrency_id)
-            ->first()){
-            return back()->withErrors('Error: only 1 master public per currency for a store.');
-        }
-
         switch ($masterwallet->address_type) {
             case 'segwit':
                 $masterwallet->script_type = 'p2sh';
@@ -74,7 +68,6 @@ class MasterwalletController extends Controller
         }
 
         $cryptocurrency = Cryptocurrency::where('id', $masterwallet->cryptocurrency_id)->first();
-
         $crypto = CryptocurrencyFactory::{$cryptocurrency->name}();
 
         try {
