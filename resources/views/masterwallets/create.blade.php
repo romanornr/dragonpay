@@ -58,7 +58,7 @@
 
                         <div class="form-group">
                             <label class="control-label" for="master_public_key">Master public key</label>*
-                            <input class="form-control" type="text" data-val="true" id="master_public_key" name="master_public_key"/>
+                            <input class="form-control" type="text" data-val="true" id="master_public_key" name="master_public_key" placeholder="example: xpub6BjNvqkdh5KB4XqdfKX6dznEV9vwiYbmBxZdFzB1CqVBK3svk3Xw8x5pMznhFoAQSrBGgaoX5cdw6BCBgLqSyqTAWMeWAW8PYiuvzp9Jy8r"/>
                         </div>
 
                         <div class="form-group">
