@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DragonPay\Address\AddressFactory as Address;
 use DragonPay\CryptoCurrencies\CryptocurrencyFactory;
+use DragonPay\DragonPay;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
 use App\Models\Masterwallet;
@@ -76,6 +77,9 @@ class MasterwalletController extends Controller
         }catch (\Exception $e){
             return back()->withErrors('Error: this does not seem like a valid Master public key.');
         }
+
+//        $x = new DragonPay();
+//       return dd($x->isMasterPublicKeyUsed('btc'));
 
         $masterwallet->user()->associate($user);
         $masterwallet->save();

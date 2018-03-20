@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\Store;
+use App\User;
 
 $factory->define(App\Models\Masterwallet::class, function (Faker $faker){
 
