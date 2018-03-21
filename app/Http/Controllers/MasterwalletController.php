@@ -42,8 +42,8 @@ class MasterwalletController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param MasterwalletStore $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function store(MasterwalletStore $request)
     {
