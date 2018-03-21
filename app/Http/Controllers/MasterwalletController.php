@@ -54,10 +54,7 @@ class MasterwalletController extends Controller
             'store_id' => 'required'
         ]);
 
-        $masterwallet->store_id = $request->input('store_id');
-        $masterwallet->cryptocurrency_id = $request->input('cryptocurrency_id');
-        $masterwallet->address_type = $request->input('address_type');
-        $masterwallet->master_public_key = $request->input('master_public_key');
+        $masterwallet->fill($request->all());
 
         switch ($masterwallet->address_type) {
             case 'segwit':
