@@ -133,15 +133,6 @@ class MasterwalletController extends Controller
             array_push($array, $array1);
         }
 
-       // json_encode($array);
-
-
-//        $array = [
-//            "cryptocurrency" => $cryptocurrency,
-//            "type" => $addressType,
-//            "address" => $payment_address,
-//            "keypath" => $keyPath
-//        ];
         echo json_encode($array);
     }
 
