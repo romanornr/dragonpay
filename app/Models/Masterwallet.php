@@ -5,6 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Masterwallet extends Model {
 
+    const TYPE_SEGWIT = 'segwit';
+    const TYPE_LEGACY = 'legacy';
+
     /**
      * table masterwallets
      * @var string

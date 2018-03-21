@@ -15,9 +15,6 @@ use function MongoDB\BSON\toJSON;
 class MasterwalletController extends Controller
 {
 
-    const TYPE_SEGWIT = 'segwit';
-    const TYPE_LEGACY = 'legacy';
-    
     /**
      * Display a listing of the resource.
      *
@@ -61,10 +58,10 @@ class MasterwalletController extends Controller
         $masterwallet->fill($request->all());
 
         switch ($masterwallet->address_type) {
-            case 'segwit':
+            case Masterwallet::TYPE_SEGWIT:
                 $masterwallet->script_type = 'p2sh';
                 break;
-            case 'legacy':
+            case Masterwallet::TYPE_LEGACY:
                 $masterwallet->script_type = 'p2pkh';
                 break;
         }
