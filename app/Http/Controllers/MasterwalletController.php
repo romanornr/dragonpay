@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MasterwalletStore;
 use DragonPay\Address\AddressFactory as Address;
 use DragonPay\CryptoCurrencies\CryptocurrencyFactory;
 use DragonPay\DragonPay;
@@ -44,16 +45,11 @@ class MasterwalletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MasterwalletStore $request)
     {
 
         $masterwallet = new Masterwallet();
         $user = Auth::user();
-
-        $request->validate([
-            'master_public_key' => 'required|unique:masterwallets',
-            'store_id' => 'required'
-        ]);
 
         $masterwallet->fill($request->all());
 
