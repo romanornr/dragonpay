@@ -14,6 +14,10 @@ use function MongoDB\BSON\toJSON;
 
 class MasterwalletController extends Controller
 {
+
+    const TYPE_SEGWIT = 'segwit';
+    const TYPE_LEGACY = 'legacy';
+    
     /**
      * Display a listing of the resource.
      *
