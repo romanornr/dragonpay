@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,20 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 Auth::routes();
+
+Route::get('search/invoices', function ()
+{
+    $query = Request()->input('q');
+    //return dd(\App\Models\Invoices::all());
+
+   // $invoices = $query
+        $invoices = \App\Models\Invoices::where('uuid', \App\Models\Invoices::encodeUuid($query))->get();
+       // : \App\Models\Invoices::all();
+
+    ///return view('invoices.index')->with)
+    //return view('invoices', ['invoices' => $invoices]);
+    return view('invoices.index')->with(['invoices' => $invoices]);
+});
 
 Route::get('/invoice/uuid={uuid}/edit', 'OrderController@edit');
 Route::put('/invoice/update', 'OrderController@update')->name('updateOrder');

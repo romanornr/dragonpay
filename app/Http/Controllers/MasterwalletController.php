@@ -78,8 +78,17 @@ class MasterwalletController extends Controller
             return back()->withErrors('Error: this does not seem like a valid Master public key.');
         }
 
-//        $x = new DragonPay();
-//       return dd($x->isMasterPublicKeyUsed('btc'));
+        $addresses = [];
+
+        for ($keyPath = 1; $keyPath <= 10; $keyPath++){
+            $payment_address = Address::getAddress($crypto, $masterwallet->address_type, $masterwallet->master_public_key , $keyPath)
+                ->createPaymentAddress();
+            array_push($addresses, $payment_address);
+        }
+
+        $dragonPay = new DragonPay();
+        if($dragonPay->isMasterPublicKeyUsed($cryptocurrency->symbol, $addresses))
+            return back()->withErrors('This master public key has been used. Please generate a new one.');
 
         $masterwallet->user()->associate($user);
         $masterwallet->save();

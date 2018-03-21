@@ -27,8 +27,8 @@
                 </div>
             @endif
 
-            <form action="/search" method="POST" role="search">
-                {{ csrf_field() }}
+            <form action="/search/invoices" method="GET" role="search">
+                {{--{{ csrf_field() }}--}}
                 <div class="input-group">
                     <input type="text" class="form-control" name="q" autocomplete="off"
                            placeholder="Search invoice on UUID"> <span class="input-group-btn">
