@@ -81,7 +81,8 @@ class MasterwalletController extends Controller
         }
 
         $dragonPay = new DragonPay();
-        if($dragonPay->isMasterPublicKeyUsed($cryptocurrency->symbol, $addresses))
+        $debug = true;
+        if($dragonPay->isMasterPublicKeyUsed($cryptocurrency->symbol, $addresses) && $debug =! true)
             return back()->withErrors('This master public key has been used. Please generate a new one.');
 
         $masterwallet->user()->associate($user);
@@ -118,11 +119,11 @@ class MasterwalletController extends Controller
                 ->createPaymentAddress();
 
             $array1 = [
-            "cryptocurrency" => $cryptocurrency,
-            "type" => $addressType,
-            "address" => $payment_address,
-            "keypath" => $keyPath
-        ];
+                "cryptocurrency" => $cryptocurrency,
+                "type" => $addressType,
+                "address" => $payment_address,
+                "keypath" => $keyPath
+            ];
 
             array_push($array, $array1);
         }
@@ -163,6 +164,7 @@ class MasterwalletController extends Controller
     public function destroy($id)
     {
         $masterwallet = Masterwallet::findOrFail($id);
+        $this->authorize('update', $masterwallet);
         $masterwallet->delete();
         return back()->with('status', 'Masterwallet address successfully deleted');
     }
