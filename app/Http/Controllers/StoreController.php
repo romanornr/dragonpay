@@ -101,6 +101,7 @@ class StoreController extends Controller
     public function destroy($id)
     {
         $store = Store::findOrFail($id);
+        $this->authorize('update', $store);
         $store->delete();
         return back()->with('status', 'Masterwallet address successfully deleted');
     }
