@@ -56,7 +56,6 @@
                 <tbody>
                 @if(!empty($invoices))
                 @foreach($invoices as $invoice)
-                    {{$invoice}}
                     <tr>
                         <td>{{ $invoice->created_at }}</td>
                         <td>{{ $invoice->store->name }}</td>

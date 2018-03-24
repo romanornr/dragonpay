@@ -27,15 +27,16 @@ class MasterwalletTest extends TestCase
     public function test_a_user_can_see_his_masterwallets() //Needs fix
     {
         $masterwallet = factory(Masterwallet::class)->create();
-        $user = User::find($masterwallet->user_id)->first();
+        $user = User::find($masterwallet->user_id);
         Auth::login($user);
         $this->assertAuthenticated($guard = null);
 
         $response = $this->get('/masterwallets');
 
         $response->assertSee('cryptocurrency');
-        $response->assertSee('legacy');
-       // $response->assertSee('xpub6DBfFoZHK5ZCzuoViVTzmRTf91DEVvYoifJQToHhHAwS2pmyeQCfQ5pqCg65WYBB2jnyDtoPRdpLVgwH5UpFswFX1qNtD4ccpZJXB9fqkQA');
+        $response->assertSee('Mining-Rigs');
+        $response->assertSee('segwit');
+        $response->assertSee($masterwallet->address_type, 'segwit');
     }
 
     public function testCreateMasterwallet()
@@ -59,6 +60,11 @@ class MasterwalletTest extends TestCase
         self::assertEquals($masterwallet->address_type, 'segwit');
         self::assertEquals($masterwallet->script_type, 'p2sh');
         self::assertEquals($masterwallet->user_id, $this->store->user_id);
+
+        $response = $this->get('/masterwallets');
+
+        $response->assertSee('cryptocurrency');
+        $response->assertSee('segwit');
         
     }
 

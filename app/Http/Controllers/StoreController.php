@@ -19,8 +19,6 @@ class StoreController extends Controller
     public function index()
     {
         return view('stores.index');
-        //$DragonPay = new DragonPay();
-        ///return dd($DragonPay->getBitcoinPrice(22));
     }
 
     /**
