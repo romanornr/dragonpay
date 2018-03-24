@@ -85,10 +85,8 @@ class MasterwalletTest extends TestCase
         $user = User::find($masterwallet->user_id);
         Auth::login($user);
         $this->assertAuthenticated($guard = null);
-        $response = $this->call('DELETE', "/masterwallets/1", ['_token' => csrf_token()]);
-        //return dd(Masterwallet::find($masterwallet->id));
+        $response = $this->call('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()]);
         return dd($response);
-        //$response->assertStatus('302');
     }
 
 }
