@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Masterwallet;
+use App\Models\Masterwallet;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MasterwalletPolicy
@@ -37,19 +37,19 @@ class MasterwalletPolicy
      * Determine whether the user can update the masterwallet.
      *
      * @param  \App\User  $user
-     * @param  \App\Masterwallet  $masterwallet
+     * @param  \App\Models\Masterwallet  $masterwallet
      * @return mixed
      */
     public function update(User $user, Masterwallet $masterwallet)
     {
-        return $user->id === $masterwallet->user_id;
+       return $user->id === $masterwallet->user_id;
     }
 
     /**
      * Determine whether the user can delete the masterwallet.
      *
      * @param  \App\User  $user
-     * @param  \App\Masterwallet  $masterwallet
+     * @param  \App\Models\Masterwallet  $masterwallet
      * @return mixed
      */
     public function delete(User $user, Masterwallet $masterwallet)

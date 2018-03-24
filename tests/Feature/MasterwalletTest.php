@@ -24,7 +24,7 @@ class MasterwalletTest extends TestCase
 
     }
 
-    public function test_a_user_can_see_his_masterwallets() //Needs fix
+    public function test_a_user_can_see_his_masterwallets()
     {
         $masterwallet = factory(Masterwallet::class)->create();
         $user = User::find($masterwallet->user_id);
@@ -65,7 +65,30 @@ class MasterwalletTest extends TestCase
 
         $response->assertSee('cryptocurrency');
         $response->assertSee('segwit');
-        
+    }
+
+    function test_unauthorized_user_may_not_delete_masterwallets()
+    {
+        $this->withExceptionHandling();
+        $masterwallet = factory(Masterwallet::class)->create();
+        $this->call('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()])->assertRedirect('/login');
+
+        Auth::login($this->user); //login with wrong user (user has no permission over the newly created $masterwallet
+        $response = $this->call('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()]);
+        $response->assertStatus(404);
+    }
+
+    function test_authorized_user_has_permission_to_delete_masterwallets() //needs fix
+    {
+        $this->withExceptionHandling();
+        $masterwallet = factory(Masterwallet::class)->create();
+        $user = User::find($masterwallet->user_id);
+        Auth::login($user);
+        $this->assertAuthenticated($guard = null);
+        $response = $this->call('DELETE', "/masterwallets/1", ['_token' => csrf_token()]);
+        //return dd(Masterwallet::find($masterwallet->id));
+        return dd($response);
+        //$response->assertStatus('302');
     }
 
 }
