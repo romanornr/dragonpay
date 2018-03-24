@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use DragonPay\DragonPay;
 use DragonPay\Rates;
 use DragonPay\Address\AddressFactory as Address;
-use App\Models\Invoices;
+use App\Models\Invoice;
 
 class OrderController extends Controller
 {
@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function edit($uuid)
     {
-        $invoice = Invoices::withUuid($uuid)->firstOrFail();
+        $invoice = Invoice::withUuid($uuid)->firstOrFail();
         $masterwallets = Masterwallet::where('store_id', $invoice->store_id)->orderBy('id', 'desc')->get();
 
         return view('orders.edit', ['masterwallets' => $masterwallets,
@@ -33,7 +33,7 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
-        $invoice = Invoices::withUuid($request->input('uuid'))->firstOrFail();
+        $invoice = Invoice::withUuid($request->input('uuid'))->firstOrFail();
         $cryptocurrency = Cryptocurrency::where('id', $request->input('cryptocurrency_id'))->firstOrFail();
         $masterwallet = Masterwallet::where('cryptocurrency_id', $cryptocurrency->id)
             ->where('store_id', $invoice->store_id)
@@ -45,7 +45,7 @@ class OrderController extends Controller
         $crypto = CryptocurrencyFactory::{$cryptocurrency->name}();
         $invoice->cryptocurrency_id = $cryptocurrency->id;
         $invoice->masterwallet_id = $masterwallet->id;
-        $invoice->key_path = Invoices::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1; //Take the next keypath from the masterwallet
+        $invoice->key_path = Invoice::where('masterwallet_id', $invoice->masterwallet_id)->max('key_path')+1; //Take the next keypath from the masterwallet
         $invoice->payment_address = Address::getAddress($crypto, $masterwallet->address_type, $masterwallet->master_public_key, $invoice->key_path)
             ->createPaymentAddress();
 
@@ -65,7 +65,7 @@ class OrderController extends Controller
      */
     public function show($invoice)
     {
-        $invoice = Invoices::withUuid($invoice)->firstOrFail();
+        $invoice = Invoice::withUuid($invoice)->firstOrFail();
         $cryptocurrency = $invoice->cryptocurrency;
         $DragonPay = new DragonPay();
 

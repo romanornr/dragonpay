@@ -33,12 +33,19 @@ Route::get('search/invoices', function ()
     //return dd(\App\Models\Invoices::all());
 
    // $invoices = $query
-        $invoices = \App\Models\Invoices::where('uuid', \App\Models\Invoices::encodeUuid($query))->get();
+        $invoices = \App\Models\Invoice::where('uuid', \App\Models\Invoice::encodeUuid($query))->get();
+//        return dd($invoices)
+
+//    return view('invoices.index')
+//        ->with('invoices', $invoices);
+    Route::view('invoices', ['invoices' => $invoices]);
+
+
        // : \App\Models\Invoices::all();
 
     ///return view('invoices.index')->with)
     //return view('invoices', ['invoices' => $invoices]);
-    return view('invoices.index')->with(['invoices' => $invoices]);
+    //return view('invoices.index')->with(['invoices' => $invoices]);
 });
 
 Route::get('/invoice/uuid={uuid}/edit', 'OrderController@edit');

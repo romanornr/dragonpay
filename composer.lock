@@ -904,12 +904,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c9a32f289b1bd7678ec519d25598815c0af2373a"
+                "reference": "cfa4e4b25b913e9fd89213ac8d66873fd90a4b1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c9a32f289b1bd7678ec519d25598815c0af2373a",
-                "reference": "c9a32f289b1bd7678ec519d25598815c0af2373a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/cfa4e4b25b913e9fd89213ac8d66873fd90a4b1c",
+                "reference": "cfa4e4b25b913e9fd89213ac8d66873fd90a4b1c",
                 "shasum": ""
             },
             "require": {
@@ -1030,7 +1030,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-03-21T14:26:47+00:00"
+            "time": "2018-03-22T03:22:47+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1097,16 +1097,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.5.3",
+            "version": "5.5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "b79edc7acf574144c9811277286b4cafee8a07cc"
+                "reference": "04c596a69975b901f2223eb6eb4adf55354121c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/b79edc7acf574144c9811277286b4cafee8a07cc",
-                "reference": "b79edc7acf574144c9811277286b4cafee8a07cc",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/04c596a69975b901f2223eb6eb4adf55354121c2",
+                "reference": "04c596a69975b901f2223eb6eb4adf55354121c2",
                 "shasum": ""
             },
             "require": {
@@ -1124,7 +1124,9 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": [],
+                "branch-alias": {
+                    "dev-master": "5.5-dev"
+                },
                 "laravel": {
                     "providers": [
                         "Collective\\Html\\HtmlServiceProvider"
@@ -1159,7 +1161,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2018-02-12T14:19:55+00:00"
+            "time": "2018-03-24T00:39:21+00:00"
         },
         {
             "name": "lastguest/murmurhash",
@@ -1210,12 +1212,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "1ce7cc142d906ba58dc54c82915d355a9191c8a8"
+                "reference": "5884bf7192488e88abbbc682a632879d7c20ec6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1ce7cc142d906ba58dc54c82915d355a9191c8a8",
-                "reference": "1ce7cc142d906ba58dc54c82915d355a9191c8a8",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5884bf7192488e88abbbc682a632879d7c20ec6a",
+                "reference": "5884bf7192488e88abbbc682a632879d7c20ec6a",
                 "shasum": ""
             },
             "require": {
@@ -1286,7 +1288,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-03-01T10:27:04+00:00"
+            "time": "2018-03-22T20:27:11+00:00"
         },
         {
             "name": "mdanter/ecc",
@@ -2086,12 +2088,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "62628862df4c7b6568630d23f403bc42436d7c5e"
+                "reference": "1f55a65f519846040a2e1a75a9987f83137f81e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/62628862df4c7b6568630d23f403bc42436d7c5e",
-                "reference": "62628862df4c7b6568630d23f403bc42436d7c5e",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/1f55a65f519846040a2e1a75a9987f83137f81e8",
+                "reference": "1f55a65f519846040a2e1a75a9987f83137f81e8",
                 "shasum": ""
             },
             "require": {
@@ -2104,7 +2106,7 @@
             "require-dev": {
                 "codeception/aspect-mock": "^1.0 | ~2.0.0",
                 "doctrine/annotations": "~1.2.0",
-                "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ^2.1",
+                "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ~2.1.0",
                 "ircmaxell/random-lib": "^1.1",
                 "jakub-onderka/php-parallel-lint": "^0.9.0",
                 "mockery/mockery": "^0.9.9",
@@ -2158,7 +2160,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2018-02-07T23:28:02+00:00"
+            "time": "2018-03-23T15:28:09+00:00"
         },
         {
             "name": "rgooding/protobuf-php",
@@ -2217,7 +2219,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/romanornr/dragonpay-lib",
-                "reference": "285167742a97c9a1864a81366d1c44d7e91a6497",
+                "reference": "32ff14631e4d6e4afb63f3ab4289e2320bc6f38c",
                 "shasum": null
             },
             "require": {
@@ -3151,19 +3153,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "b40f67f9b1e806497c746e0da089fb140cd6f6c4"
+                "reference": "5f90733adbf19ea71468a5761fb8f5a043d424dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/b40f67f9b1e806497c746e0da089fb140cd6f6c4",
-                "reference": "b40f67f9b1e806497c746e0da089fb140cd6f6c4",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/5f90733adbf19ea71468a5761fb8f5a043d424dd",
+                "reference": "5f90733adbf19ea71468a5761fb8f5a043d424dd",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
             },
             "conflict": {
-                "symfony/config": "<2.8",
+                "symfony/config": "<3.3.1",
                 "symfony/dependency-injection": "<3.3",
                 "symfony/yaml": "<3.4"
             },
@@ -3171,7 +3173,7 @@
                 "doctrine/annotations": "~1.0",
                 "doctrine/common": "~2.2",
                 "psr/log": "~1.0",
-                "symfony/config": "~2.8|~3.0|~4.0",
+                "symfony/config": "^3.3.1|~4.0",
                 "symfony/dependency-injection": "~3.3|~4.0",
                 "symfony/expression-language": "~2.8|~3.0|~4.0",
                 "symfony/http-foundation": "~2.8|~3.0|~4.0",
@@ -3221,7 +3223,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-03-11T18:19:37+00:00"
+            "time": "2018-03-23T08:14:09+00:00"
         },
         {
             "name": "symfony/translation",

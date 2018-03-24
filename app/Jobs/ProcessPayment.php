@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Invoices;
+use App\Models\Invoice;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,10 +34,10 @@ class ProcessPayment implements ShouldQueue
 
     /**
      * Create a new job instance.
-     * @param  Invoices $invoice
+     * @param  Invoice $invoice
      * @return void
      */
-    public function __construct(Invoices $invoice)
+    public function __construct(Invoice $invoice)
     {
         $this->invoice = $invoice;
     }

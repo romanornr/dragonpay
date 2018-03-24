@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ProcessPayment;
-use App\Models\Invoices;
+use App\Models\Invoice;
 use App\Models\Cryptocurrency;
 use App\User;
 use DragonPay\CryptoCurrencies\Bitcoin;
@@ -23,10 +23,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-
-        $invoices = Invoices::with(['store' => function ($query){
-            $query->where('user_id', Auth::id());
-        }])->paginate(1);
+        $invoices = Auth::user()->invoices()->with('store')->paginate(1);
 
         return view('invoices.index')
             ->with('invoices', $invoices);
@@ -55,7 +52,7 @@ class InvoiceController extends Controller
     {
         $user = Auth::user();
 
-        $invoice = new Invoices();
+        $invoice = new Invoice();
         $invoice->user()->associate($user);
         $invoice->order_id = $request->input('order_id');
         $invoice->store_id = $request->input('store_id');
@@ -65,7 +62,7 @@ class InvoiceController extends Controller
         $invoice->buyer_email = $request->input('buyer_email');
         $invoice->notification_url = $request->input('notification_url');
 
-        if(!is_null($invoice->order_id) && Invoices::where('store_id', $invoice->store_id)
+        if(!is_null($invoice->order_id) && Invoice::where('store_id', $invoice->store_id)
             ->where('order_id', $invoice->order_id)
             ->exists()){
             return back()->withErrors('This order_id is not unique for this store');
@@ -78,10 +75,10 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Invoices  $invoice
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoices $invoice)
+    public function show(Invoice $invoice)
     {
         //
     }
@@ -89,10 +86,10 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Invoices  $invoice
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invoices $invoice)
+    public function edit(Invoice $invoice)
     {
 
     }
@@ -101,10 +98,10 @@ class InvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoices  $invoice
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoices $invoice)
+    public function update(Request $request, Invoice $invoice)
     {
         //
     }
@@ -112,10 +109,10 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Invoices  $invoice
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoices $invoice)
+    public function destroy(Invoice $invoice)
     {
         //
     }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\BinaryUuid\HasBinaryUuid;
 
-class Invoices extends Model {
+class Invoice extends Model {
 
     use HasBinaryUuid;
 

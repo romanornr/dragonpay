@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Invoices;
+use App\Models\Invoice;
 use App\Models\Masterwallet;
 use Tests\TestCase;
 use App\User;
@@ -35,7 +35,7 @@ class InvoiceTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-        $invoice = Invoices::take(1)->first();
+        $invoice = Invoice::take(1)->first();
 
         self::assertEquals($invoice->store_id, 1);
         self::assertEquals($invoice->masterwallet_id, null);
