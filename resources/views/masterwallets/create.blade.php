@@ -62,6 +62,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="control-label" for="min_confirmations">The invoice is confirmed when the payment transaction</label>*
+                            <select id="inputState" name="min_confirmations" class="form-control">
+                                <option value="0" selected>is unconfirmed</option>
+                                <option value="1">1 confirmation</option>
+                                <option value="3">3 confirmations</option>
+                                <option value="6">6 confirmations</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <input type="submit" id="submit" value="Create" class="btn btn-success" />
                         </div>
                 </div>
