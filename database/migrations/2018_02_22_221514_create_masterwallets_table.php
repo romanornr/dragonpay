@@ -23,6 +23,7 @@ class CreateMasterwalletsTable extends Migration
             $table->string('master_public_key');
             $table->string('address_type');
             $table->string('script_type');
+            $table->unsignedTinyInteger('min_confirmations');
             $table->timestamps();
 
             $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');

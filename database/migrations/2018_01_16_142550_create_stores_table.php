@@ -18,7 +18,6 @@ class CreateStoresTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('name');
             $table->string('website')->nullable();
-            $table->unsignedTinyInteger('min_confirmations');
             $table->unsignedTinyInteger('expiration_time');
             $table->timestamps();
 
