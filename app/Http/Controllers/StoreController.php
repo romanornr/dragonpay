@@ -47,7 +47,6 @@ class StoreController extends Controller
             'name' => 'required|max:100',
             'website' => 'required|url|max:60',
             'expiration_time' => 'required|numeric|digits_between:2,4',
-            'min_confirmations' => 'required|numeric|digits_between:0,6',
         ]);
 
         tap($store)->fill($attributes);
