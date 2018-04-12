@@ -11,6 +11,7 @@ use DragonPay\DragonPay;
 use DragonPay\Rates;
 use DragonPay\Address\AddressFactory as Address;
 use App\Models\Invoice;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -66,6 +67,10 @@ class OrderController extends Controller
     public function show($invoice)
     {
         $invoice = Invoice::withUuid($invoice)->firstOrFail();
+
+        $creationTimeInvoice = $invoice->store->created_at;
+        if(Carbon::now()->subMinutes($invoice->store->expiration_time) >= $creationTimeInvoice) return dd('invoice expired');
+
         $cryptocurrency = $invoice->cryptocurrency;
         $DragonPay = new DragonPay();
 

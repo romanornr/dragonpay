@@ -59,7 +59,7 @@ class ProcessPayment implements ShouldQueue
             return;
         }
 
-        throw new Exception('not paid yet');
+       // throw new Exception('not paid yet');
     }
 
     /**
