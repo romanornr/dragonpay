@@ -69,7 +69,9 @@ class OrderController extends Controller
         $invoice = Invoice::withUuid($invoice)->firstOrFail();
 
         $creationTimeInvoice = $invoice->store->created_at;
-        if(Carbon::now()->subMinutes($invoice->store->expiration_time) >= $creationTimeInvoice) return dd('invoice expired');
+        if(Carbon::now()->subMinutes($invoice->store->expiration_time) >= $creationTimeInvoice){
+            return view('invoices.expired');
+        };
 
         $cryptocurrency = $invoice->cryptocurrency;
         $DragonPay = new DragonPay();
