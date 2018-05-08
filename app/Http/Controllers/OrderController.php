@@ -68,8 +68,10 @@ class OrderController extends Controller
     {
         $invoice = Invoice::withUuid($invoice)->firstOrFail();
 
-        $creationTimeInvoice = $invoice->store->created_at;
-        if(Carbon::now()->subMinutes($invoice->store->expiration_time) >= $creationTimeInvoice){
+        $creationTimeInvoice = $invoice->created_at;
+        $expirationTime = $creationTimeInvoice->addMinutes($invoice->store->expiration_time);
+
+        if(Carbon::now() >= $expirationTime){
             return view('invoices.expired');
         };
 
