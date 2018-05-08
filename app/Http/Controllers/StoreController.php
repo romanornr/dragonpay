@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStore;
 use App\Jobs\ProcessPayment;
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
@@ -37,17 +38,13 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStore $request)
     {
         $user = Auth::user();
         $store = new Store();
         $store->user()->associate($user);
 
-        $attributes = $request->validate([
-            'name' => 'required|max:100',
-            'website' => 'required|url|max:60',
-            'expiration_time' => 'required|numeric|digits_between:2,4',
-        ]);
+        $attributes = $request->validated();
 
         tap($store)->fill($attributes);
         $store->save();

@@ -72,8 +72,8 @@ class MasterwalletController extends Controller
             return back()->withErrors('Error: this does not seem like a valid Master public key.');
         }
 
+        // generate 10 child keys and put them in the $addresses array
         $addresses = [];
-
         for ($keyPath = 1; $keyPath <= 10; $keyPath++){
             $payment_address = Address::getAddress($crypto, $masterwallet->address_type, $masterwallet->master_public_key , $keyPath)
                 ->createPaymentAddress();
@@ -82,6 +82,8 @@ class MasterwalletController extends Controller
 
         $dragonPay = new DragonPay();
         $debug = true;
+
+        // check if 1 of the 10 child keys is used. If so, do not allow the user to continue.
         if($dragonPay->isMasterPublicKeyUsed($cryptocurrency->symbol, $addresses) && $debug =! true)
             return back()->withErrors('This master public key has been used. Please generate a new one.');
 
