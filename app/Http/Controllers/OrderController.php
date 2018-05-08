@@ -72,6 +72,8 @@ class OrderController extends Controller
         $expirationTime = $creationTimeInvoice->addMinutes($invoice->store->expiration_time);
 
         if(Carbon::now() >= $expirationTime){
+            $invoice->status = 'expired';
+            $invoice->save();
             return view('invoices.expired');
         };
 
