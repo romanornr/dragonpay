@@ -69,7 +69,9 @@ class ProcessPayment implements ShouldQueue
      */
     public function retryUntil()
     {
-        return now()->addMinutes(10);
+        $creationTimeInvoice = $this->invoice->created_at;
+        $expirationTime = $creationTimeInvoice->addMinutes($this->invoice->store->expiration_time);
+        return now()->addMinutes($expirationTime+1);
     }
 
     /**
@@ -82,5 +84,21 @@ class ProcessPayment implements ShouldQueue
     {
         $this->invoice->status = 'invalid';
         $this->invoice->save();
+    }
+
+    /**
+     * Check if invoice is expired checking the store settings expiration time
+     * in minutes.
+     */
+    public function checkExpiration()
+    {
+        $creationTimeInvoice = $this->invoice->created_at;
+        $expirationTime = $creationTimeInvoice->addMinutes($this->invoice->store->expiration_time);
+
+        if(Carbon::now() >= $expirationTime){
+            $this->invoice->status = 'expired';
+            $this->invoice->save();
+        };
+
     }
 }
