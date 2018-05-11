@@ -13,7 +13,7 @@
             </div>
 
 
-            <a class="btn btn-success" role="button" href="{{ route('shops') }}"><span class="glyphicon glyphicon-plus"></span> Create a new store</a>
+            <a class="btn btn-success" role="button" href="{{ route('shops.create') }}"><span class="glyphicon glyphicon-plus"></span> Create a new shop</a>
             <br></br>
             <table class="table table-sm">
                 <thead>
@@ -33,7 +33,7 @@
                     <td>{{ $store->website }}</td>
                     <td></td>
                     <td>
-                        <form onsubmit="return confirm('Do you really want to delete this store?'); "action="{{url('stores', [$store->id])}}" method="POST">
+                        <form onsubmit="return confirm('Do you really want to delete this store?'); "action="{{url('shops', [$store->id])}}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-danger" value="Delete"/>

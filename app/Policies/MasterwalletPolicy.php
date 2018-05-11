@@ -54,6 +54,6 @@ class MasterwalletPolicy
      */
     public function delete(User $user, Masterwallet $masterwallet)
     {
-        //
+        return $user->id === $masterwallet->user_id;
     }
 }

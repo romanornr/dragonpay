@@ -32,12 +32,12 @@ class ShopTest extends TestCase
 
         $response->assertStatus(302);
 
-        $store = Shop::find(1);
-        self::assertNotEquals($store->name, 'storeee1');
-        self::assertEquals($store->name, 'store1');
-        self::assertEquals($store->website, 'https://store1example.com');
-        self::assertEquals($store->expiration_time, 15);
-        self::assertEquals($store->user_id, $user->id);
+        $shop = Shop::find(1);
+        self::assertNotEquals($shop->name, 'storeee1');
+        self::assertEquals($shop->name, 'store1');
+        self::assertEquals($shop->website, 'https://store1example.com');
+        self::assertEquals($shop->expiration_time, 15);
+        self::assertEquals($shop->user_id, $user->id);
 
     }
 
