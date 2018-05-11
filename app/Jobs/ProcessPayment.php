@@ -71,7 +71,7 @@ class ProcessPayment implements ShouldQueue
     {
         $creationTimeInvoice = $this->invoice->created_at;
         $expirationTime = $creationTimeInvoice->addMinutes($this->invoice->store->expiration_time);
-        return now()->addMinutes($expirationTime+1);
+        return $expirationTime;
     }
 
     /**

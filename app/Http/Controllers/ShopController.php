@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStore;
+use App\Http\Requests\ShopStore;
 use App\Jobs\ProcessPayment;
 use Illuminate\Http\Request;
 use DragonPay\DragonPay;
-use App\Models\Store;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class StoreController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('stores.index');
+        return view('shops.index');
     }
 
     /**
@@ -29,26 +29,26 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('stores.create');
+        return view('shops.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Shop a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStore $request)
+    public function store(ShopStore $request)
     {
         $user = Auth::user();
-        $store = new Store();
+        $store = new Shop();
         $store->user()->associate($user);
 
         $attributes = $request->validated();
 
         tap($store)->fill($attributes);
         $store->save();
-        return redirect('stores')->with('status', 'Store succesfully created');
+        return redirect('shops')->with('status', 'Shop succesfully created');
 
     }
 
@@ -94,7 +94,7 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        $store = Store::findOrFail($id);
+        $store = Shop::findOrFail($id);
         $this->authorize('update', $store);
         $store->delete();
         return back()->with('status', 'Masterwallet address successfully deleted');

@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function stores()
     {
-        return $this->hasMany('App\Models\Store');
+        return $this->hasMany('App\Models\Shop');
     }
 
     public function invoices()

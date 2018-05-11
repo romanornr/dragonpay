@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Create a new store</h2>
+                <h2 class="section-heading">Create a new shop</h2>
                 <hr class="primary">
             </div>
         </div>
@@ -30,11 +30,11 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <form action="{{url('stores')}}" method="post">
+                <form action="{{url('shops')}}" method="post">
                     {{ csrf_field()}}
                     {{ method_field("POST")}}
                     <div class="form-group">
-                        <label class="control-label" for="Name">Store name</label>*
+                        <label class="control-label" for="Name">Shop name</label>*
                         <input class="form-control" type="text" data-val="true" id="name" name="name" required="true" autocomplete="off"/>
                     </div>
 

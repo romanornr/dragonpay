@@ -23,7 +23,7 @@ class Masterwallet extends Model {
 
     public function stores()
     {
-        return $this->belongsTo('App\Models\Store', 'store_id');
+        return $this->belongsTo('App\Models\Shop', 'store_id');
     }
 
     public function cryptocurrency()

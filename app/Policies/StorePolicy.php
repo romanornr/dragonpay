@@ -23,7 +23,7 @@ class StorePolicy
     }
 
     /**
-     * Determine whether the user can create stores.
+     * Determine whether the user can create shops.
      *
      * @param  \App\User  $user
      * @return mixed

@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Cryptocurrency;
 use App\Models\Masterwallet;
-use App\Models\Store;
+use App\Models\Shop;
 use Tests\TestCase;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,7 @@ class MasterwalletTest extends TestCase
     {
         parent::setUp();
         $this->seed('CryptocurrenciesTableSeeder');
-        $this->store = factory(Store::class)->create();
+        $this->store = factory(Shop::class)->create();
         $this->user = User::find($this->store->user_id)->first();
 
     }
@@ -50,6 +50,7 @@ class MasterwalletTest extends TestCase
             'cryptocurrency_id' => 1,
             'address_type' => 'segwit',
             'master_public_key' => 'xpub6DBfFoZHK5ZCzuoViVTzmRTf91DEVvYoifJQToHhHAwS2pmyeQCfQ5pqCg65WYBB2jnyDtoPRdpLVgwH5UpFswFX1qNtD4ccpZJXB9fqkQA',
+            'min_confirmations' => 1,
         ]);
 
         $response->assertStatus(302);
@@ -60,6 +61,7 @@ class MasterwalletTest extends TestCase
         self::assertEquals($masterwallet->address_type, 'segwit');
         self::assertEquals($masterwallet->script_type, 'p2sh');
         self::assertEquals($masterwallet->user_id, $this->store->user_id);
+        self::assertEquals($masterwallet->min_confirmations, 1);
 
         $response = $this->get('/masterwallets');
 
@@ -78,6 +80,7 @@ class MasterwalletTest extends TestCase
         $response->assertStatus(404);
     }
 
+    // Needs fix
     function test_authorized_user_has_permission_to_delete_masterwallets() //needs fix
     {
         $this->withExceptionHandling();
@@ -85,8 +88,12 @@ class MasterwalletTest extends TestCase
         $user = User::find($masterwallet->user_id);
         Auth::login($user);
         $this->assertAuthenticated($guard = null);
+
+       // return dd($user->find($masterwallet->user_id));
         $response = $this->call('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()]);
-        return dd($response);
+       // return dd(Masterwallet::find($masterwallet->id));
+       // return dd($response);
+        //$response->assertRedirect(302);
     }
 
 }

@@ -9,7 +9,7 @@ use DragonPay\DragonPay;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
 use App\Models\Masterwallet;
-use App\Models\Store;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 use function MongoDB\BSON\toJSON;
 
@@ -40,7 +40,7 @@ class MasterwalletController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Shop a newly created resource in storage.
      *
      * @param MasterwalletStore $request
      * @return $this|\Illuminate\Http\RedirectResponse

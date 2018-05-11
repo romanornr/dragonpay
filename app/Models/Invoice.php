@@ -29,7 +29,7 @@ class Invoice extends Model {
 
     public function store()
     {
-        return $this->belongsTo('App\Models\Store', 'store_id');
+        return $this->belongsTo('App\Models\Shop', 'store_id');
     }
 
     public function cryptocurrency()

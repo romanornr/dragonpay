@@ -6,14 +6,14 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Stores</h2>
+                    <h2 class="section-heading">Shops</h2>
                     <hr class="primary">
                     <p>Create and manage store settings.</p>
                 </div>
             </div>
 
 
-            <a class="btn btn-success" role="button" href="{{ route('stores.create') }}"><span class="glyphicon glyphicon-plus"></span> Create a new store</a>
+            <a class="btn btn-success" role="button" href="{{ route('shops') }}"><span class="glyphicon glyphicon-plus"></span> Create a new store</a>
             <br></br>
             <table class="table table-sm">
                 <thead>

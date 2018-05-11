@@ -9,7 +9,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/stores">Stores</a>
+            <a class="nav-link" href="/shops">Shops</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="/invoices">Invoices</a>

@@ -28,7 +28,7 @@ class CreateMasterwalletsTable extends Migration
 
             $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('shops')->onDelete('cascade');
         });
     }
 

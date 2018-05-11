@@ -36,7 +36,7 @@ class CreateInvoiceTable extends Migration
             $table->string('status')->default('new');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('shops')->onDelete('cascade');
             $table->foreign('cryptocurrency_id')->references('id')->on('cryptocurrencies')->onDelete('cascade');
             $table->foreign('masterwallet_id')->references('id')->on('masterwallets');
             $table->timestamps();
