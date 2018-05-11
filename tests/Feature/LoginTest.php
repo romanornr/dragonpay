@@ -31,7 +31,7 @@ class LoginTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-        $this->assertAuthenticated($guard = null);
+        $this->assertAuthenticatedAs($user, $guard = null);
     }
 
     /**

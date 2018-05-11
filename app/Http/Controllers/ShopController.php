@@ -95,8 +95,7 @@ class ShopController extends Controller
     public function destroy($id)
     {
         $shop = Shop::findOrFail($id);
-       // $this->authorize('update', $shop);
-
+        $this->authorize('update', $shop);
         $shop->delete();
         return back()->with('status', 'Shop successfully deleted');
     }

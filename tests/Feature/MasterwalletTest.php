@@ -87,10 +87,16 @@ class MasterwalletTest extends TestCase
         $masterwallet = factory(Masterwallet::class)->create();
         $user = User::find($masterwallet->user_id);
         Auth::login($user);
-        $this->assertAuthenticated($guard = null);
+        $this->assertAuthenticatedAs($user, $guard = null);
 
-        $response = $this->call('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()]);
-        $response->assertRedirect(302);
+        //$response = $this->json('DELETE', "/masterwallets/{$masterwallet->id}", ['_token' => csrf_token()]);
+
+        $response = $this->actingAs($user)->json('DELETE', "/masterwallets/{$masterwallet->id}", ['_token' => csrf_token()]);
+
+        //$response = $this->call('DELETE', "/masterwallets/{$masterwallet->id}", ['_token' => csrf_token()]);
+        //$response = $this->json('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()]);
+        return dd($response);
+        //$response->assertStatus(302);
     }
 
 }

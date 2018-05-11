@@ -166,7 +166,7 @@ class MasterwalletController extends Controller
     public function destroy($id)
     {
         $masterwallet = Masterwallet::findOrFail($id);
-        $this->authorize('update', $masterwallet);
+        $this->authorize('delete', $masterwallet);
         $masterwallet->delete();
         return back()->with('status', 'Masterwallet address successfully deleted');
     }
