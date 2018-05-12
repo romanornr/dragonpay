@@ -6,12 +6,12 @@ use App\User;
 
 $factory->define(App\Models\Masterwallet::class, function (Faker $faker){
 
-    $store = factory(Shop::class)->create();
+    $shop = factory(Shop::class)->create();
 
    return [
        'cryptocurrency_id' => 1,
-       'user_id' => $store->user_id,
-       'store_id' => $store->id,
+       'user_id' => $shop->user_id,
+       'store_id' => $shop->id,
        'address_type' => 'segwit',
        'script_type' => 'p2sh',
        'min_confirmations' => 1,

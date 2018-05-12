@@ -45,7 +45,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Created</th>
-                    <th scope="col">Store</th>
+                    <th scope="col">Shop</th>
                     <th scope="col">order id</th>
                     <th scope="col">invoice uuid</th>
                     <th scope="col">Amount</th>
@@ -58,7 +58,7 @@
                 @foreach($invoices as $invoice)
                     <tr>
                         <td>{{ $invoice->created_at }}</td>
-                        <td>{{ $invoice->store->name }}</td>
+                        <td>{{ $invoice->shop->name }}</td>
                         <td>{{ $invoice->order_id }}</td>
                         <td>{{ $invoice->uuid_text }}</td>
                         <td> {{ $invoice->price }} {{ $invoice->currency }}</td>

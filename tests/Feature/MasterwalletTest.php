@@ -19,8 +19,8 @@ class MasterwalletTest extends TestCase
     {
         parent::setUp();
         $this->seed('CryptocurrenciesTableSeeder');
-        $this->store = factory(Shop::class)->create();
-        $this->user = User::find($this->store->user_id)->first();
+        $this->shop = factory(Shop::class)->create();
+        $this->user = User::find($this->shop->user_id)->first();
 
     }
 
@@ -46,7 +46,7 @@ class MasterwalletTest extends TestCase
         $response->assertStatus(200);
 
         $response = $this->post('/masterwallets', [
-            'store_id' => $this->store->id,
+            'store_id' => $this->shop->id,
             'cryptocurrency_id' => 1,
             'address_type' => 'segwit',
             'master_public_key' => 'xpub6DBfFoZHK5ZCzuoViVTzmRTf91DEVvYoifJQToHhHAwS2pmyeQCfQ5pqCg65WYBB2jnyDtoPRdpLVgwH5UpFswFX1qNtD4ccpZJXB9fqkQA',
@@ -56,11 +56,11 @@ class MasterwalletTest extends TestCase
         $response->assertStatus(302);
 
         $masterwallet = Masterwallet::find(1);
-        self::assertEquals($masterwallet->store_id, $this->store->id);
+        self::assertEquals($masterwallet->store_id, $this->shop->id);
         self::assertEquals($masterwallet->cryptocurrency_id, 1);
         self::assertEquals($masterwallet->address_type, 'segwit');
         self::assertEquals($masterwallet->script_type, 'p2sh');
-        self::assertEquals($masterwallet->user_id, $this->store->user_id);
+        self::assertEquals($masterwallet->user_id, $this->shop->user_id);
         self::assertEquals($masterwallet->min_confirmations, 1);
 
         $response = $this->get('/masterwallets');
@@ -95,7 +95,7 @@ class MasterwalletTest extends TestCase
 
         //$response = $this->call('DELETE', "/masterwallets/{$masterwallet->id}", ['_token' => csrf_token()]);
         //$response = $this->json('DELETE', "/masterwallets/{{ $masterwallet->id }}", ['_token' => csrf_token()]);
-        return dd($response);
+        //return dd($response);
         //$response->assertStatus(302);
     }
 

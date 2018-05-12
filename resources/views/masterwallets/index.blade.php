@@ -27,7 +27,7 @@
             <table class="table table-sm">
                 <thead>
                 <tr>
-                    <th scope="col">store</th>
+                    <th scope="col">shop</th>
                     <th scope="col">cryptocurrency</th>
                     <th scope="col">master public key</th>
                     <th scope="col">address type</th>

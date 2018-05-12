@@ -41,13 +41,13 @@ class ShopController extends Controller
     public function store(ShopStore $request)
     {
         $user = Auth::user();
-        $store = new Shop();
-        $store->user()->associate($user);
+        $shop = new Shop();
+        $shop->user()->associate($user);
 
         $attributes = $request->validated();
 
-        tap($store)->fill($attributes);
-        $store->save();
+        tap($shop)->fill($attributes);
+        $shop->save();
         return redirect('shops')->with('status', 'Shop succesfully created');
 
     }

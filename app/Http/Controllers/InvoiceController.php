@@ -23,7 +23,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Auth::user()->invoices()->with('store')->paginate(1);
+        $invoices = Auth::user()->invoices()->with('shop')->paginate(1);
 
         return view('invoices.index')
             ->with('invoices', $invoices);
@@ -65,7 +65,7 @@ class InvoiceController extends Controller
         if(!is_null($invoice->order_id) && Invoice::where('store_id', $invoice->store_id)
             ->where('order_id', $invoice->order_id)
             ->exists()){
-            return back()->withErrors('This order_id is not unique for this store');
+            return back()->withErrors('This order_id is not unique for this shop');
         }
 
         $invoice->save();

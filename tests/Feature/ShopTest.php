@@ -14,7 +14,7 @@ class ShopTest extends TestCase
 
     /**
      * A user can login, go to the create shops page
-     * and create a store
+     * and create a shop
      */
     public function testCreateStoreAsLoggedInUser()
     {

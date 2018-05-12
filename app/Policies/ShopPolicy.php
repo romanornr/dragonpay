@@ -11,7 +11,7 @@ class ShopPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the store.
+     * Determine whether the user can view the shop.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Shop  $shop
@@ -34,10 +34,10 @@ class ShopPolicy
     }
 
     /**
-     * Determine whether the user can update the store.
+     * Determine whether the user can update the shop.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Shop  $store
+     * @param  \App\Models\Shop  $shop
      * @return mixed
      */
     public function update(User $user, Shop $shop)
@@ -46,7 +46,7 @@ class ShopPolicy
     }
 
     /**
-     * Determine whether the user can delete the store.
+     * Determine whether the user can delete the shop.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Shop  $shop

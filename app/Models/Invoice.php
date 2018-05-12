@@ -27,7 +27,7 @@ class Invoice extends Model {
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function store()
+    public function shop()
     {
         return $this->belongsTo('App\Models\Shop', 'store_id');
     }

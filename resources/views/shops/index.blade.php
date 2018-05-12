@@ -8,7 +8,7 @@
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Shops</h2>
                     <hr class="primary">
-                    <p>Create and manage store settings.</p>
+                    <p>Create and manage shop settings.</p>
                 </div>
             </div>
 
@@ -26,14 +26,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach(Auth::user()->stores as $store)
+                @foreach(Auth::user()->stores as $shop)
                 <tr>
-                    <th scope="col">{{ $store->id }}</th>
-                    <th scope="row">{{ $store->name }}</th>
-                    <td>{{ $store->website }}</td>
+                    <th scope="col">{{ $shop->id }}</th>
+                    <th scope="row">{{ $shop->name }}</th>
+                    <td>{{ $shop->website }}</td>
                     <td></td>
                     <td>
-                        <form onsubmit="return confirm('Do you really want to delete this store?'); "action="{{url('shops', [$store->id])}}" method="POST">
+                        <form onsubmit="return confirm('Do you really want to delete this shop?'); "action="{{url('shops', [$shop->id])}}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-danger" value="Delete"/>

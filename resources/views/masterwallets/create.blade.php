@@ -21,8 +21,8 @@
             @endif
 
             @if(empty(Auth::user()->stores[0]))
-                <p>Please create a store first so you can attach a master key to a store.</p>
-                <a class="btn btn-success" href="{{ route('shops') }}" role="button">Create a new store</a>
+                <p>Please create a shop first so you can attach a master key to a shop.</p>
+                <a class="btn btn-success" href="{{ route('shops') }}" role="button">Create a new shop</a>
             @else
             <div class="row">
                 <div class="col-lg-12">
@@ -31,10 +31,10 @@
                         {{ method_field("POST")}}
 
                         <div class="form-group">
-                            <label class="control-label" for="store_id">Store</label>*
+                            <label class="control-label" for="store_id">Shop</label>*
                             <select id="inputState" name="store_id" class="form-control">
-                                @foreach(Auth::user()->stores as $store)
-                                    <option value="{{ $store->id }}">{{ $store->name  }}</option>
+                                @foreach(Auth::user()->stores as $shop)
+                                    <option value="{{ $shop->id }}">{{ $shop->name  }}</option>
                                 @endforeach
                             </select>
                         </div>

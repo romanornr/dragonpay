@@ -52,7 +52,7 @@ class OrderController extends Controller
 
         $invoice->save();
 
-        $delay = (int) ceil($cryptocurrency->blocktime * 2 + $invoice->store->expiration_time);
+        $delay = (int) ceil($cryptocurrency->blocktime * 2 + $invoice->shop->expiration_time);
         ProcessPayment::dispatch($invoice)
             ->delay(now()->addMinutes($delay));
 
@@ -69,7 +69,7 @@ class OrderController extends Controller
         $invoice = Invoice::withUuid($invoice)->firstOrFail();
 
         $creationTimeInvoice = $invoice->created_at;
-        $expirationTime = $creationTimeInvoice->addMinutes($invoice->store->expiration_time);
+        $expirationTime = $creationTimeInvoice->addMinutes($invoice->shop->expiration_time);
 
         if(Carbon::now() >= $expirationTime){
             $invoice->status = 'expired';

@@ -70,10 +70,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="store_id">Store</label>*
+                        <label class="control-label" for="store_id">Shop</label>*
                         <select id="inputState" name="store_id" class="form-control" required="true">
-                            @foreach(Auth::user()->stores as $store)
-                                <option value="{{ $store->id }}">{{ $store->name  }}</option>
+                            @foreach(Auth::user()->stores as $shop)
+                                <option value="{{ $shop->id }}">{{ $shop->name  }}</option>
                             @endforeach
                         </select>
                     </div>

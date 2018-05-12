@@ -42,7 +42,7 @@ class User extends Authenticatable
 //     *
 //     * @var array
 //     */
-//    protected $touches = ['store'];
+//    protected $touches = ['shop'];
 
     public function masterwallets()
     {
